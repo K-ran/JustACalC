@@ -1,14 +1,126 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+              android:weightSum="4"
+              android:orientation="vertical"
              tools:context="in.karanpurohit.justacalc.Calculater.NormalKeypadFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:gravity="center"
+    <!--First row-->
+    <LinearLayout
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Normal keyboard"/>
+        android:layout_height="0dp">
+        <TextView
+            style="@style/keypadbuttonstyle"
+            android:text="7"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tvKB7"/>
+        <TextView
+            style="@style/keypadbuttonstyle"
+            android:text="8"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tvKB8"/>
+        <TextView
+            style="@style/keypadbuttonstyle"
+            android:text="9"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tvKB9"/>
 
-</FrameLayout>
+    </LinearLayout>
+
+    <!--Second row-->
+    <LinearLayout
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <TextView
+            style="@style/keypadbuttonstyle"
+            android:text="4"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tvKB4"/>
+        <TextView
+            style="@style/keypadbuttonstyle"
+            android:text="5"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tvKB5"/>
+        <TextView
+            style="@style/keypadbuttonstyle"
+            android:text="6"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tvKB6"/>
+    </LinearLayout>
+    <!--Third row-->
+    <LinearLayout
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <TextView
+            style="@style/keypadbuttonstyle"
+            android:text="1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tvKB1"/>
+        <TextView
+            style="@style/keypadbuttonstyle"
+            android:text="2"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tvKB2"/>
+        <TextView
+            style="@style/keypadbuttonstyle"
+            android:text="3"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tvKB3"/>
+    </LinearLayout>
+    <!--Fourth row-->
+    <LinearLayout
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <TextView
+            style="@style/keypadbuttonstyle"
+            android:text="."
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tvKBDot"/>
+        <TextView
+            style="@style/keypadbuttonstyle"
+            android:text="0"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tvKB0"/>
+        <TextView
+            style="@style/keypadbuttonstyle"
+            android:text="="
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tvKBEqual"/>
+    </LinearLayout>
+</LinearLayout>
