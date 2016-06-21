@@ -1,16 +1,15 @@
 package in.karanpurohit.justacalc.Calculater;
 
-import android.content.Context;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.InputType;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.TextView;
+
+
+import com.evgenii.jsevaluator.JsEvaluator;
+import com.evgenii.jsevaluator.interfaces.JsCallback;
 
 import in.karanpurohit.justacalc.R;
 
@@ -39,10 +38,29 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         //--------------------
 
         // TODO:  Hiding the soft keyboard if using edittext
+        //-----------------
 
-        //-----------------------
+        String expression = "b=4;a=5;function myFunction(p1, p2) {\n" +
+                "    return p1 * p2;              // The function returns the product of p1 and p2\n" +
+                "}" +
+                "myFunction(a, b);";
+
+        JsEvaluator jsEvaluator = new JsEvaluator (this);
+        jsEvaluator.evaluate(expression, new JsCallback () {
+            @Override
+            public void onResult(final String result) {
+                tvResult.setText (result);
+            }
+        });
+
 
     }
+
+
+    public void buttonClicked(View view){
+
+    }
+
 
     @Override
     public void onFragmentInteraction (Uri uri) {
