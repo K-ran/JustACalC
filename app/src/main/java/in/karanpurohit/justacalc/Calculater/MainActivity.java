@@ -16,7 +16,10 @@ import android.widget.TextView;
 import com.evgenii.jsevaluator.JsEvaluator;
 import com.evgenii.jsevaluator.interfaces.JsCallback;
 
+import in.karanpurohit.justacalc.AboutUs.AboutUsFragment;
+import in.karanpurohit.justacalc.Create.CreateFragment;
 import in.karanpurohit.justacalc.LeftNavDrawer.DrawerListAdapter;
+import in.karanpurohit.justacalc.MyFunctions.MyFunctionsFragment;
 import in.karanpurohit.justacalc.R;
 
 public class MainActivity extends AppCompatActivity implements NormalKeypadFragment.OnFragmentInteractionListener,
@@ -53,6 +56,23 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         navigationList.setOnItemClickListener (new AdapterView.OnItemClickListener () {
             @Override
             public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
+                fragmentTransaction = fragmentManager.beginTransaction ();
+                switch (position) {
+                    case 0:
+                        fragmentTransaction.replace (R.id.content_frame, new CalculaterFragment ());
+                        break;
+                    case 1:
+                        fragmentTransaction.replace (R.id.content_frame, new MyFunctionsFragment ());
+                        break;
+                    case 2:
+                        fragmentTransaction.replace (R.id.content_frame, new CreateFragment ());
+                        break;
+                    case 3:
+                        fragmentTransaction.replace (R.id.content_frame, new AboutUsFragment ());
+                        break;
+
+                }
+                fragmentTransaction.commit ();
                 drawerLayout.closeDrawers ();
             }
         });
