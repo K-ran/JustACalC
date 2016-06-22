@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
 import com.evgenii.jsevaluator.JsEvaluator;
 import com.evgenii.jsevaluator.interfaces.JsCallback;
 
+import in.karanpurohit.justacalc.LeftNavDrawer.DrawerListAdapter;
 import in.karanpurohit.justacalc.R;
 
 public class MainActivity extends AppCompatActivity implements NormalKeypadFragment.OnFragmentInteractionListener,
@@ -20,12 +22,14 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
     ViewPager pager;
     TextView tvExpression,tvResult;
     JsEvaluator jsEvaluator;
+    ListView navigationList;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
         jsEvaluator = new JsEvaluator (this);
-
+        navigationList = (ListView)findViewById (R.id.lvNavigationList);
+        navigationList.setAdapter (new DrawerListAdapter (this));
         // initilization starts here
         pager = (ViewPager)findViewById (R.id.vpSwipeKeyboard);
         tvExpression = (TextView)findViewById (R.id.tvExpression);

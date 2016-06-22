@@ -1,11 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:background="@color/white"
               android:layout_height="match_parent">
-    <TextView
-        android:text="left drawer"
+<FrameLayout
+    android:id="@+id/header"
+    android:padding="@dimen/standard_horizontal_margin"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+    <LinearLayout
+        android:weightSum="100"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ImageView
+        android:src="@drawable/ic_account_circle_white_48dp"
+        android:layout_weight="30"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+     <TextView
+         android:id="@+id/tvName"
+         style="@style/keypadbuttonstylefunction"
+         android:textSize="18dp"
+         android:gravity="center"
+         android:text="Karan Purohit"
+         android:layout_weight="70"
+         android:layout_width="0dp"
+         android:layout_height="match_parent"/>
+    </LinearLayout>
+</FrameLayout>
+    <ListView
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:dividerHeight="3dp"
+        android:divider="@android:color/transparent"
+        android:id="@+id/lvNavigationList"
+        android:layout_below="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-</LinearLayout>
+</RelativeLayout>
