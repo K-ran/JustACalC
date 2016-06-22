@@ -31,6 +31,8 @@
     </LinearLayout>
 </FrameLayout>
     <ListView
+        android:listSelector="@color/selected"
+        android:choiceMode="singleChoice"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:dividerHeight="3dp"
         android:divider="@android:color/transparent"
