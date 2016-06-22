@@ -56,14 +56,14 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/tvlog"/>
+            android:id="@+id/tvKBlog"/>
         <TextView
             style="@style/keypadbuttonstyle"
             android:text="@string/sqrt"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/tvKB6"/>
+            android:id="@+id/tvKBSqrt"/>
     </LinearLayout>
     <!--Third row-->
     <LinearLayout
@@ -117,8 +117,9 @@
             android:layout_height="match_parent"
             android:id="@+id/tvKBRightBracket"/>
         <TextView
+            android:id="@+id/tvKBComma"
             style="@style/keypadbuttonstyle"
-            android:text=""
+            android:text=","
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
