@@ -1,10 +1,10 @@
 package in.karanpurohit.justacalc.Calculater;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,12 +23,14 @@ import in.karanpurohit.justacalc.Create.CreateFragment;
 import in.karanpurohit.justacalc.LeftNavDrawer.DrawerListAdapter;
 import in.karanpurohit.justacalc.MyFunctions.MyFunctionsFragment;
 import in.karanpurohit.justacalc.R;
+import in.karanpurohit.justacalc.SignInUp.SigninActivity;
 
 public class MainActivity extends AppCompatActivity implements NormalKeypadFragment.OnFragmentInteractionListener,
                                                                ScientificKeypadFragment.OnFragmentInteractionListener{
     FragmentManager fragmentManager ;
     FragmentTransaction fragmentTransaction ;
     JsEvaluator jsEvaluator;
+    Button loginButton;
 
 
     ListView navigationList;
@@ -49,6 +51,14 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         navigationList = (ListView)findViewById (R.id.lvNavigationList);
         navigationList.setAdapter (new DrawerListAdapter (this));
         drawerLayout = (DrawerLayout)findViewById (R.id.drawer_layout);
+        loginButton = (Button)findViewById (R.id.btnSignin);
+        loginButton.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick (View v) {
+                Intent intent = new Intent (MainActivity.this, SigninActivity.class);
+                startActivity (intent);
+            }
+        });
 
         // TODO:  Hiding the soft keyboard if using edittext
         //-----------------
@@ -114,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                 evaluate (CalculaterFragment.tvExpression.getText ().toString ());
                 return;
             case R.id.tvKBDel:
+                //Long click functionality is in CalculaterFragment.java
                 String expression = CalculaterFragment.tvExpression.getText ().toString ();
                 if(expression.equals("")) break;
                 CalculaterFragment.tvExpression.setText (expression.substring (0,expression.length ()-1));break;

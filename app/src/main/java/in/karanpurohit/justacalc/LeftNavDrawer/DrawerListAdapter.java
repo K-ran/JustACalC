@@ -20,7 +20,7 @@ public class DrawerListAdapter extends BaseAdapter{
         this.context = context;
     }
 
-    String[] itemNames={"Calculater","My Functions","Create","About us"};
+    String[] itemNames={"Calculater","My Function","Create","About us"};
     int[] Imageid={R.drawable.ic_smartphone_black_48dp,
                     R.drawable.ic_home_black_48dp,
                     R.drawable.ic_add_black_48dp,

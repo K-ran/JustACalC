@@ -13,7 +13,7 @@
     <!-- The navigation drawer -->
     <include
         android:id="@+id/right_drawer"
-        android:layout_width="260dp"
+        android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         layout="@layout/left_drawer" >

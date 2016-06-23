@@ -6,7 +6,7 @@
 <FrameLayout
     android:id="@+id/header"
     android:padding="@dimen/standard_horizontal_margin"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorPrimaryDark"
     android:layout_width="match_parent"
     android:layout_height="100dp">
     <LinearLayout
@@ -19,15 +19,31 @@
         android:layout_weight="30"
         android:layout_width="0dp"
         android:layout_height="match_parent"/>
-     <TextView
-         android:id="@+id/tvName"
-         style="@style/keypadbuttonstylefunction"
-         android:textSize="18dp"
-         android:gravity="center"
-         android:text="Karan Purohit"
-         android:layout_weight="70"
-         android:layout_width="0dp"
-         android:layout_height="match_parent"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="70"
+        android:weightSum="2"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvNavName"
+            style="@style/keypadbuttonstyle"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:text="Guest"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+        <Button
+            style="@style/buttonStyle"
+            android:layout_gravity="center"
+            android:text="Login"
+            android:id="@+id/btnSignin"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"/>
+    </LinearLayout>
+
     </LinearLayout>
 </FrameLayout>
     <ListView
