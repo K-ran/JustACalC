@@ -37,6 +37,16 @@ public class CalculaterFragment extends Fragment {
         pager.setAdapter (pagerAdapter);
         pager.setCurrentItem (1);
         //--------------------
+
+        //Setting onLong press on delete key
+        ((TextView)view.findViewById (R.id.tvKBDel)).setOnLongClickListener (new View.OnLongClickListener () {
+            @Override
+            public boolean onLongClick (View v) {
+                tvExpression.setText ("");
+                return true;
+            }
+        });
+        //---------------------
         return view;
     }
 

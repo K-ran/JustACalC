@@ -7,8 +7,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         navigationList.setOnItemClickListener (new AdapterView.OnItemClickListener () {
             @Override
             public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
+                drawerLayout.closeDrawers ();
                 fragmentTransaction = fragmentManager.beginTransaction ();
                 switch (position) {
                     case 0:
@@ -74,9 +77,9 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
 
                 }
                 fragmentTransaction.commit ();
-                drawerLayout.closeDrawers ();
             }
         });
+
 
     }
 
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
 
     //IMPORTANT function. Handled the button click event of the calculater fragment
     public void buttonClicked(View view){
+        Log.d ("cool", "Button clicked");
         TextView tvButton = (TextView)view;
         switch(tvButton.getId ()){
             case R.id.tvKBMul:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString () + "*");break;
@@ -107,15 +111,12 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                 CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString () + tvButton.getText ());
                 ;break;
             case R.id.tvKBEqual:
-                jsEvaluator.evaluate (CalculaterFragment.tvExpression.getText ().toString (), new JsCallback () {
-                    @Override
-                    public void onResult (final String result) {
-
-                        CalculaterFragment.tvResult.setText (result);
-                    }
-                });
-                break;
-            case R.id.tvKBDel: CalculaterFragment.tvExpression.setText ("");break;
+                evaluate (CalculaterFragment.tvExpression.getText ().toString ());
+                return;
+            case R.id.tvKBDel:
+                String expression = CalculaterFragment.tvExpression.getText ().toString ();
+                if(expression.equals("")) break;
+                CalculaterFragment.tvExpression.setText (expression.substring (0,expression.length ()-1));break;
             case R.id.tvKBPi:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.PI);break;
             case R.id.tvKBexponent:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.E);break;
             case R.id.tvKBPower:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.POWER);break;
@@ -127,17 +128,28 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
             case R.id.tvKBTan:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.TAN);break;
         }
 
-        jsEvaluator.evaluate (CalculaterFragment.tvExpression.getText ().toString (), new JsCallback () {
+        evaluate (CalculaterFragment.tvExpression.getText ().toString ());
+    }
+
+    //evaluates the expression and displays on the screen
+    void evaluate(String expression){
+        //Applying a right bracket check, if not compelete, add by ourself
+        int bracketsLeft=0;
+        for(int i=0;i<expression.length ();i++){
+            if(expression.charAt (i)=='(') bracketsLeft++;
+            else if(expression.charAt (i)==')')bracketsLeft--;
+        }
+        if(bracketsLeft>=0)
+            for(int i=0;i<bracketsLeft;i++)
+                expression+=")";
+        //------------------------------
+        jsEvaluator.evaluate (expression, new JsCallback () {
             @Override
             public void onResult (final String result) {
-
-                CalculaterFragment.tvResult.setText (result);
+                    CalculaterFragment.tvResult.setText (result);
             }
         });
     }
-
-
-
 
     @Override
     public void onFragmentInteraction (Uri uri) {
