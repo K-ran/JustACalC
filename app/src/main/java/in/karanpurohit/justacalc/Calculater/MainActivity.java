@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
 
 
         //Handling navigation drawer click listener
+        //This is handles fragment changes and nav drawer closee function
         navigationList.setOnItemClickListener (new AdapterView.OnItemClickListener () {
             @Override
             public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
 
 
 
+    //IMPORTANT function. Handled the button click event of the calculater fragment
     public void buttonClicked(View view){
         TextView tvButton = (TextView)view;
         switch(tvButton.getId ()){
