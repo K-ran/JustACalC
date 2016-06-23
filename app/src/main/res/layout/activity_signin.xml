@@ -39,12 +39,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <EditText
+                android:inputType="textEmailAddress"
                 android:layout_marginTop="50dp"
                 style="@style/inputBox.form"
                 android:hint="Email"
                 android:id="@+id/etSigninEmail"
                 />
             <EditText
+                android:inputType="textPassword"
                 style="@style/inputBox.form"
                 android:hint="Password"
                 android:layout_below="@id/etSigninEmail"
