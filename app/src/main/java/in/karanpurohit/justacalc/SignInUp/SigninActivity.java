@@ -34,7 +34,7 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
         signin.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
-                if(!(isEmailValid ()&& isPasswordValid ()))
+                if(!(isEmailValid ()&&isPasswordValid ()))
                     return;
                 //TODO: Start the login process
                 sendRequest();
