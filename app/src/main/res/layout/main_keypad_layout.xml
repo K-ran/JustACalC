@@ -45,12 +45,26 @@
                 android:layout_height="match_parent"
                 android:id="@+id/vpSwipeKeyboard"
                 />
-            <ImageView
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/small_circle_empty"
-                android:layout_width="10dp"
-                android:layout_height="10dp"/>
+            <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_marginRight="12dp"
+                    android:id="@+id/scrollIndicatorLeft"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/small_circle_empty"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"/>
+                <ImageView
+                    android:layout_toRightOf="@id/scrollIndicatorLeft"
+                    android:id="@+id/scrollIndicatorRight"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/small_circle_empty"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"/>
+        </LinearLayout>
         </RelativeLayout>
     </FrameLayout>
 
