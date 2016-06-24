@@ -88,8 +88,6 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
     @Override
     public void onSuccess (String string) {
         progress.dismiss ();
-        Log.d ("Coool", "You are logged in ;)\n" + string);
-
         try {
            userData = new JSONObject (string);
            String name =  userData.getString ("name");

@@ -21,7 +21,6 @@ public class Session {
             edit.putString (CONSTANTS.NAME, userData.getString ("name"));
             edit.putString (CONSTANTS.EMAIL,userData.getString ("email"));
             edit.putString (CONSTANTS.TOKEN, userData.getString ("token"));
-            Log.d ("Cool",userData.toString ());
             edit.commit();
             return true;
         }

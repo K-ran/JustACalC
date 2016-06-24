@@ -56,23 +56,6 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         loginButton = (Button)findViewById (R.id.btnSignin);
         tvNavName = (TextView)findViewById (R.id.tvNavName);
 
-        //Setting up login button
-        loginButton.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick (View v) {
-                if(!Session.isSomeOneLoggedIn (getApplicationContext ())) {
-                    Intent intent = new Intent (MainActivity.this, SigninActivity.class);
-                    startActivityForResult (intent, SIGNIN_REQUEST_CODE);
-                }
-                else{
-                    Session.destroySession (getApplicationContext ());
-                    loginButton.setText ("Login");
-                    tvNavName.setText ("Guest");
-                }
-            }
-        });
-        //--------------------------------------
-
         //Change user name is user Already logged in
         if(Session.isSomeOneLoggedIn (this)){
             loginButton.setText ("Logout");
@@ -109,6 +92,23 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
             }
         });
 
+        //Setting up login button
+        loginButton.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick (View v) {
+
+                if (!Session.isSomeOneLoggedIn (getApplicationContext ())) {
+                    Intent intent = new Intent (MainActivity.this, SigninActivity.class);
+                    startActivityForResult (intent, SIGNIN_REQUEST_CODE);
+                }
+                else {
+                    Session.destroySession (getApplicationContext ());
+                    loginButton.setText ("Login");
+                    tvNavName.setText ("Guest");
+                }
+            }
+        });
+        //--------------------------------------
 
     }
 

@@ -50,7 +50,7 @@
         android:listSelector="@color/selected"
         android:choiceMode="singleChoice"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:dividerHeight="3dp"
+        android:dividerHeight="10dp"
         android:divider="@android:color/transparent"
         android:id="@+id/lvNavigationList"
         android:layout_below="@+id/header"
