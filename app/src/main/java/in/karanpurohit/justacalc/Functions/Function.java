@@ -1,7 +1,7 @@
 package in.karanpurohit.justacalc.Functions;
 
 /**
- * Created by ankita on 23/6/16.
+ * Created by Karan Purohit on 23/6/16.
  */
 public class Function {
     private String name;

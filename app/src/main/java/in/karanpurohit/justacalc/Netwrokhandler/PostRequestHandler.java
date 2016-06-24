@@ -2,6 +2,7 @@ package in.karanpurohit.justacalc.Netwrokhandler;
 
 import android.content.Context;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,12 +35,17 @@ public class PostRequestHandler implements Response.ErrorListener, Response.List
     }
     public interface ResponseHandler{
         void onSuccess(String string);
-        void onFailure(String string);
+        void onFailure(int status);
     }
 
     @Override
     public void onErrorResponse (VolleyError error) {
-        responseHandler.onFailure ("Error");
+        NetworkResponse networkResponse = error.networkResponse;
+        int status;
+        if(networkResponse!=null)
+            status = networkResponse.statusCode;
+        else status=404;
+        responseHandler.onFailure (status);
     }
 
     @Override

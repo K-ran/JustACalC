@@ -1,5 +1,10 @@
 package in.karanpurohit.justacalc.SignInUp;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,15 +16,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
+import in.karanpurohit.justacalc.CONSTANTS;
 import in.karanpurohit.justacalc.Netwrokhandler.PostRequestHandler;
+import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
 
 public class SigninActivity extends AppCompatActivity implements PostRequestHandler.ResponseHandler {
 
     Button signin;
     EditText etEmail,etPassword;
+    ProgressDialog progress;
+    JSONObject userData;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -27,9 +39,10 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
         signin = (Button)findViewById (R.id.btnActualSignin);
         etEmail = ((EditText)findViewById (R.id.etSigninEmail));
         etPassword = ((EditText)findViewById (R.id.etSiginPassword));
+        progress = new ProgressDialog(this);
+        progress.setMessage ("Signing You in ..");
 
         etEmail.setImeActionLabel ("", EditorInfo.IME_ACTION_NEXT);
-
 
         signin.setOnClickListener (new View.OnClickListener () {
             @Override
@@ -37,6 +50,7 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
                 if(!(isEmailValid ()&&isPasswordValid ()))
                     return;
                 //TODO: Start the login process
+                progress.show ();
                 sendRequest();
             }
         });
@@ -73,11 +87,31 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
 
     @Override
     public void onSuccess (String string) {
-        Log.d ("Coool", "You are logged in ;)\n"+string);
+        progress.dismiss ();
+        Log.d ("Coool", "You are logged in ;)\n" + string);
+
+        try {
+           userData = new JSONObject (string);
+           String name =  userData.getString ("name");
+            Toast.makeText (SigninActivity.this, "Welcome "+ name, Toast.LENGTH_SHORT).show ();
+            userData.put ("email", etEmail.getText ().toString ().trim ());
+            Session.createNewSession (userData, this);
+            Intent returnIntent = new Intent ();
+            setResult(Activity.RESULT_OK, returnIntent);
+            finish ();
+        }
+        catch (JSONException e) {
+            e.printStackTrace ();
+        }
     }
 
     @Override
-    public void onFailure (String string) {
+    public void onFailure (int status) {
+        progress.dismiss ();
+        if(status==406)
+            Toast.makeText (SigninActivity.this, "Incorrect Crendentials", Toast.LENGTH_SHORT).show ();
+        else
+            Toast.makeText (SigninActivity.this, "Oops, something went wrong", Toast.LENGTH_SHORT).show ();
         Log.d ("Coool", "At least error is working ;)");
     }
 }

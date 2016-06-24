@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 /**
- * Created by ankita on 21/6/16.
+ * Created by Karan Purohit on 21/6/16.
  */
 public class KeypadsPagerAdapter extends FragmentPagerAdapter {
 

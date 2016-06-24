@@ -11,7 +11,7 @@ import android.widget.TextView;
 import in.karanpurohit.justacalc.R;
 
 /**
- * Created by ankita on 22/6/16.
+ * Created by Karan Purohit on 22/6/16.
  */
 public class DrawerListAdapter extends BaseAdapter{
     Context context;
