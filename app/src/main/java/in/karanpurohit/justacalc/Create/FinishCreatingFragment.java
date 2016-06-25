@@ -3,7 +3,6 @@ package in.karanpurohit.justacalc.Create;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
+import in.karanpurohit.justacalc.Calculater.CalculaterFragment;
 import in.karanpurohit.justacalc.Calculater.MainActivity;
 import in.karanpurohit.justacalc.Netwrokhandler.PostRequestHandler;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
@@ -54,8 +54,8 @@ public class FinishCreatingFragment extends Fragment implements PostRequestHandl
 
     @Override
     public void onSuccess (String string) {
-
-        Toast.makeText (getActivity (), "Successfully created function", Toast.LENGTH_SHORT).show ();
+        Toast.makeText (getActivity (), "Successfully created function", Toast.LENGTH_LONG).show ();
+        ((MainActivity)getActivity ()).popFronBackState ();
     }
 
     @Override
@@ -72,5 +72,10 @@ public class FinishCreatingFragment extends Fragment implements PostRequestHandl
         params.put("description", description.getText ().toString ().trim());
         params.put("public",publish.isChecked ()?1+"":0+"");
         new PostRequestHandler (params,"/function",this,getActivity ());
+    }
+
+    @Override
+    public void onDestroy () {
+        super.onDestroy ();
     }
 }

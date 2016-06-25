@@ -19,11 +19,4 @@
         layout="@layout/left_drawer" >
     </include>
 
-    <include
-        android:id="@+id/right_drawer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        layout="@layout/right_drawer" >
-    </include>
 </android.support.v4.widget.DrawerLayout>

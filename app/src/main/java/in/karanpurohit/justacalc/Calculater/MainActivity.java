@@ -140,10 +140,16 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         }
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack ("create Activity")
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack ("createActivity")
                 .commit ();
     }
 
+    //This function is callder from Create function fragment to go to the finish creating fragment
+    public void popFronBackState() {
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.popBackStack ();
+    }
 
     //IMPORTANT function. Handled the button click event of the calculater fragment
     public void buttonClicked(View view){
