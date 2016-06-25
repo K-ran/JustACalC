@@ -4,18 +4,29 @@ package in.karanpurohit.justacalc.Calculater;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import in.karanpurohit.justacalc.Functions.Function;
+import in.karanpurohit.justacalc.Functions.FunctionArrayAdaper;
+import in.karanpurohit.justacalc.Netwrokhandler.PostRequestHandler;
+import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
 
-public class CalculaterFragment extends Fragment {
+public class CalculaterFragment extends Fragment implements PostRequestHandler.ResponseHandler {
 
 
     public CalculaterFragment () {
@@ -26,6 +37,9 @@ public class CalculaterFragment extends Fragment {
     KeypadsPagerAdapter pagerAdapter;
     ViewPager pager;
     ImageView leftScrollIndecator,rightScrollindecator;
+    ListView rightDrawerListView;
+    ArrayList<Function> rightDrawerListArray;
+    FunctionArrayAdaper adapter;
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
                               Bundle savedInstanceState) {
@@ -36,6 +50,8 @@ public class CalculaterFragment extends Fragment {
         pager = (ViewPager)view.findViewById (R.id.vpSwipeKeyboard);
         leftScrollIndecator= (ImageView)view.findViewById (R.id.scrollIndicatorLeft);
         rightScrollindecator= (ImageView)view.findViewById (R.id.scrollIndicatorRight);
+        rightDrawerListArray = new ArrayList<Function> ();
+        adapter = new FunctionArrayAdaper (getActivity (),rightDrawerListArray);
         //--------------------------//
 
         //Setting up view pager
@@ -80,8 +96,37 @@ public class CalculaterFragment extends Fragment {
             }
         });
         //---------------------
+
+        //Setting up the right drawer list
+        rightDrawerListView = (ListView)view.findViewById (R.id.lv_right_drawer_list);
+        rightDrawerListView.setAdapter (adapter);
+        if(Session.isSomeOneLoggedIn (getActivity ())){
+            HashMap<String,String> param = new HashMap<String,String> ();
+            param.put ("token",Session.getToken (getActivity ()));
+            new PostRequestHandler (param,"/myfunctions",this,getActivity ());
+        }
         return view;
     }
 
 
+    @Override
+    public void onSuccess (String string) {
+
+        try {
+            JSONArray array = new JSONArray (string);
+            for (int i=0;i<array.length ();i++){
+                JSONObject object = array.getJSONObject (i);
+                adapter.add (Function.createFromJsonObject (object));
+                adapter.notifyDataSetChanged ();
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace ();
+        }
+    }
+
+    @Override
+    public void onFailure (int status) {
+
+    }
 }
