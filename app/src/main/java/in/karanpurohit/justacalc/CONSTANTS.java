@@ -22,4 +22,15 @@ public class CONSTANTS {
     public static final String EMAIL = "email";
     public static final String TOKEN = "token";
     //-------------------
+
+
+    //Function prop
+    public static final String FUNCTION_NAME = "name";
+    public static final String FUNCTION_ID = "id";
+    public static final String FUNCTION_CATEGORY = "category";
+    public static final String FUNCTION_DESCRIPTION = "description";
+    public static final String FUNCTION_USERID = "user_id";
+    public static final String FUNCTION_DEFINATION = "defination";
+    public static final String FUNCTION_PUBLIC = "public";
+
 }

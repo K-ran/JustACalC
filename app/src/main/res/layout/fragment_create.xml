@@ -57,14 +57,14 @@
             android:layout_width="match_parent"
             android:minHeight="200dp"
             android:layout_height="match_parent"/>
+        <Button
+            android:id="@+id/btnCreaterFunctionNext"
+            android:layout_below="@id/etFunctionDefination"
+            android:layout_margin="10dp"
+            style="@style/buttonStyle"
+            android:text="Next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
     </ScrollView>
-    <Button
-        android:id="@+id/btnCreaterFunctionNext"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
-        style="@style/buttonStyle"
-        android:text="Next"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 </RelativeLayout>

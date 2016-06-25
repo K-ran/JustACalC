@@ -12,6 +12,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
     <EditText
+        android:layout_margin="10dp"
         android:hint="Write a small description of the function, helps people easily search and use your function"
         android:gravity="top"
         android:padding="20dp"
