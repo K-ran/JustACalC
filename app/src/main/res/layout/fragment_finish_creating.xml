@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="in.karanpurohit.justacalc.Create.FinishCreatingFragment">
+
+<TextView
+    android:textSize="24dp"
+    android:text="Finish"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+    <EditText
+        android:hint="Write a small description of the function, helps people easily search and use your function"
+        android:gravity="top"
+        android:padding="20dp"
+        style="@style/inputBox"
+        android:minHeight="200dp"
+        android:id="@+id/etFunctonDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:layout_margin="@dimen/standard_horizontal_margin"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/standard_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <CheckBox
+            android:id="@+id/chkbxPublic"
+            android:layout_alignParentLeft="true"
+            android:text=" Make it public (available to others)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btnFinish"
+            android:layout_alignParentRight="true"
+            style="@style/buttonStyle"
+            android:layout_gravity="right"
+            android:text="Finish"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+
+</LinearLayout>

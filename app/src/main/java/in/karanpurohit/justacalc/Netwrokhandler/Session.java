@@ -46,7 +46,7 @@ public class Session {
     public static String getToken(Context context){
         if(isSomeOneLoggedIn (context)) {
             SharedPreferences userDetails = context.getSharedPreferences (CONSTANTS.USER_DETAILS, context.MODE_PRIVATE);
-            userDetails.getString (CONSTANTS.TOKEN,null);
+           return userDetails.getString (CONSTANTS.TOKEN,null);
         }
         return null;
     }

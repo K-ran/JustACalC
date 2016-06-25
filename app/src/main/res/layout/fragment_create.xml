@@ -1,13 +1,70 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context="in.karanpurohit.justacalc.Create.CreateFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Create fragment"/>
-
-</FrameLayout>
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            style="@style/labelStyle"
+            android:gravity="center"
+            android:text="New Function"
+            android:id="@+id/tvCreateHeading"
+            android:textSize="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <!--<TextView-->
+            <!--android:layout_below="@id/tvCreateHeading"-->
+            <!--style="@style/labelStyle"-->
+            <!--android:text="Function name"-->
+            <!--android:id="@+id/tvFunctionName"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"/>-->
+        <EditText
+            android:text="echo "
+            android:inputType="none"
+            android:id="@+id/etFunctionName"
+            style="@style/inputBox.form"
+            android:hint="Function Name Eg. RectArea"
+            android:layout_below="@id/tvCreateHeading"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:text="inp"
+            android:inputType="none"
+            android:id="@+id/etFunctionParameters"
+            style="@style/inputBox.form"
+            android:hint="Parameters Eg. height,width"
+            android:layout_below="@id/etFunctionName"
+            android:layout_width="match_parent"
+            android:maxLines="1"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:text="return inp*inp;"
+            android:inputType="none"
+            style="@style/inputBox"
+            android:id="@+id/etFunctionDefination"
+            android:hint="Defination Eg: \nreturn height*width;"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:padding="20dp"
+            android:gravity="top"
+            android:layout_below="@id/etFunctionParameters"
+            android:layout_width="match_parent"
+            android:minHeight="200dp"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/btnCreaterFunctionNext"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        style="@style/buttonStyle"
+        android:text="Next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

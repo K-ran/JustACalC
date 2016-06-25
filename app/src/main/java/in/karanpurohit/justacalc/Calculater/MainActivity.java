@@ -3,6 +3,8 @@ package in.karanpurohit.justacalc.Calculater;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -70,27 +72,20 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         //This is handles fragment changes and nav drawer closee function
         navigationList.setOnItemClickListener (new AdapterView.OnItemClickListener () {
             @Override
-            public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick (AdapterView<?> parent, View view, final int position, long id) {
                 drawerLayout.closeDrawers ();
-                fragmentTransaction = fragmentManager.beginTransaction ();
-                switch (position) {
-                    case 0:
-                        fragmentTransaction.replace (R.id.content_frame, new CalculaterFragment ());
-                        break;
-                    case 1:
-                        fragmentTransaction.replace (R.id.content_frame, new MyFunctionsFragment ());
-                        break;
-                    case 2:
-                        fragmentTransaction.replace (R.id.content_frame, new CreateFragment ());
-                        break;
-                    case 3:
-                        fragmentTransaction.replace (R.id.content_frame, new AboutUsFragment ());
-                        break;
 
-                }
-                fragmentTransaction.commit ();
+                //new handler thread so that nav drawer closes smoothly
+                new Handler ().postDelayed (new Runnable () {
+                    @Override
+                    public void run () {
+                        changeFragment (position);
+                    }
+                }, 250);
             }
         });
+
+
 
         //Setting up login button
         loginButton.setOnClickListener (new View.OnClickListener () {
@@ -112,6 +107,42 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
 
     }
 
+    //changes the fragment
+    void changeFragment(int position){
+        fragmentTransaction = fragmentManager.beginTransaction ();
+        switch (position) {
+            case 0:
+                fragmentTransaction.replace (R.id.content_frame, new CalculaterFragment ());
+                break;
+            case 1:
+                fragmentTransaction.replace (R.id.content_frame, new MyFunctionsFragment ());
+                break;
+            case 2:
+                fragmentTransaction.replace (R.id.content_frame, new CreateFragment ());
+                break;
+            case 3:
+                fragmentTransaction.replace (R.id.content_frame, new AboutUsFragment ());
+                break;
+
+        }
+        fragmentTransaction.commit ();
+    }
+
+
+    //This function is callder from Create function fragment to go to the finish creating fragment
+    public void replaceFragments(Class fragmentClass, Bundle bundle) {
+        Fragment fragment = null;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+            fragment.setArguments (bundle);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack ("create Activity")
+                .commit ();
+    }
 
 
     //IMPORTANT function. Handled the button click event of the calculater fragment
