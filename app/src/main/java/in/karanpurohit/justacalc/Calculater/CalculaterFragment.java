@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -44,6 +45,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
     public static TextView tvExpression,tvResult;
     RadioGroup radioGroup;
     EditText etSearchBox;
+    ProgressBar progressBar;
 
     public CalculaterFragment () {
         // Required empty public constructor
@@ -63,6 +65,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
         View view = inflater.inflate (R.layout.main_keypad_layout,container,false);
         radioGroup = (RadioGroup)view.findViewById (R.id.rgSelectSearchDomain);
         etSearchBox = (EditText)view.findViewById (R.id.etSearchbox);
+        progressBar = (ProgressBar)view.findViewById (R.id.pbLoadingList);
         tvExpression = (TextView)view.findViewById (R.id.tvExpression);
         tvResult = (TextView)view.findViewById (R.id.tvResult);
         pager = (ViewPager)view.findViewById (R.id.vpSwipeKeyboard);
@@ -178,6 +181,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
 
     void sendMyFunctionRequest(){
         if(Session.isSomeOneLoggedIn (getActivity ())){
+            progressBar.setVisibility (View.VISIBLE);
             HashMap<String,String> param = new HashMap<String,String> ();
             param.put ("token",Session.getToken (getActivity ()));
             new PostRequestHandler (param,"/myfunctions",this,getActivity ());
@@ -185,13 +189,14 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
     }
 
     void sendGlobalFunctionRequest(String query){
-        Log.d("cool","Get request called");
+        Log.d ("cool", "Get request called");
+        progressBar.setVisibility (View.VISIBLE);
         new GetRequestHandler ("/functions/"+query,this,getActivity ());
     }
 
     @Override
     public void onSuccess (String string) {
-
+        progressBar.setVisibility (View.GONE);
         try {
             JSONArray array = new JSONArray (string);
             for (int i=0;i<array.length ();i++){
@@ -207,7 +212,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
 
     @Override
     public void onFailure (int status) {
-
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
