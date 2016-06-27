@@ -62,6 +62,15 @@
                             android:layout_height="10dp"/>
                         <ImageView
                             android:layout_toRightOf="@id/scrollIndicatorLeft"
+                            android:id="@+id/scrollIndicatorMiddel"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginRight="12dp"
+                            android:src="@drawable/small_circle_empty"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"/>
+                        android:layout_height="10dp"/>
+                        <ImageView
+                            android:layout_toRightOf="@id/scrollIndicatorLeft"
                             android:id="@+id/scrollIndicatorRight"
                             android:layout_centerHorizontal="true"
                             android:src="@drawable/small_circle_empty"

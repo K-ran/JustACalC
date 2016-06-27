@@ -1,4 +1,4 @@
-package in.karanpurohit.justacalc.LeftNavDrawer;
+package in.karanpurohit.justacalc.DrawerAdapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,10 +13,10 @@ import in.karanpurohit.justacalc.R;
 /**
  * Created by Karan Purohit on 22/6/16.
  */
-public class DrawerListAdapter extends BaseAdapter{
+public class LeftDrawerListAdapter extends BaseAdapter{
     Context context;
 
-    public DrawerListAdapter (Context context) {
+    public LeftDrawerListAdapter (Context context) {
         this.context = context;
     }
 

@@ -19,14 +19,19 @@ public class KeypadsPagerAdapter extends FragmentPagerAdapter {
             Fragment normalKeypadFragment = new NormalKeypadFragment ();
             return normalKeypadFragment;
         }
-        else {
+        else if(position==0){
             Fragment scienTificKeyPadFragment = new ScientificKeypadFragment ();
             return  scienTificKeyPadFragment;
         }
+        else {
+            Fragment addedFunctionFragment= new AddedFunctionFragment ();
+            return  addedFunctionFragment;
+        }
     }
 
+    //Important
     @Override
     public int getCount () {
-        return 2;
+        return 3;
     }
 }

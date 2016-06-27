@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
+    >
+
+    <android.support.v7.widget.CardView
+        android:layout_margin="5dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:minHeight="120dp"
+        card:cardBackgroundColor="@color/cardview_dark_background"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:padding="@dimen/standard_vertical_padding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                style="@style/labelStyle"
+                android:id="@+id/tvAddedListFunctionName"
+                android:text="Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/tvAddedListFunctionDescription"
+                    android:text="Description"
+                    style="@style/labelStyle"
+                    android:maxHeight="250dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </ScrollView>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnAddedListUseButton"
+                    android:layout_marginTop="10dp"
+                    style="@style/rightDrawerButtonStyle"
+                    android:text="Use"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/btnAddedListRemoveButton"
+                    android:layout_marginTop="10dp"
+                    style="@style/rightDrawerButtonStyle"
+                    android:text="Remove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

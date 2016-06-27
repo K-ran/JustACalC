@@ -5,13 +5,41 @@
               android:background="@color/white"
               android:padding="15dp"
               android:layout_height="match_parent">
-  <ListView
+
+    <EditText
+        android:id="@+id/etSearchbox"
+        android:gravity="center"
+        android:hint="Search function by name"
+        style="@style/inputBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </EditText>
+    <RadioGroup
+        android:id="@+id/rgSelectSearchDomain"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/rgbItem1"
+            android:text="My functions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:id="@+id/rgbItem2"
+            android:text="Global database"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RadioGroup>
+    <ListView
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
       android:drawSelectorOnTop="true"
       android:dividerHeight="10dp"
       android:divider="@android:color/transparent"
       android:id="@+id/lv_right_drawer_list"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
-  </ListView>
+    </ListView>
 
 </LinearLayout>

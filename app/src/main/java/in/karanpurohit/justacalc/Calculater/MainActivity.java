@@ -23,7 +23,7 @@ import com.evgenii.jsevaluator.interfaces.JsCallback;
 import in.karanpurohit.justacalc.AboutUs.AboutUsFragment;
 import in.karanpurohit.justacalc.CONSTANTS;
 import in.karanpurohit.justacalc.Create.CreateFragment;
-import in.karanpurohit.justacalc.LeftNavDrawer.DrawerListAdapter;
+import in.karanpurohit.justacalc.DrawerAdapters.LeftDrawerListAdapter;
 import in.karanpurohit.justacalc.MyFunctions.MyFunctionsFragment;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
             }
         jsEvaluator = new JsEvaluator (this);
         navigationList = (ListView)findViewById (R.id.lvNavigationList);
-        navigationList.setAdapter (new DrawerListAdapter (this));
+        navigationList.setAdapter (new LeftDrawerListAdapter (this));
         drawerLayout = (DrawerLayout)findViewById (R.id.drawer_layout);
         loginButton = (Button)findViewById (R.id.btnSignin);
         tvNavName = (TextView)findViewById (R.id.tvNavName);
