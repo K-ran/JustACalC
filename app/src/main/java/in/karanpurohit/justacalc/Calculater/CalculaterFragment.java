@@ -197,6 +197,8 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
     @Override
     public void onSuccess (String string) {
         progressBar.setVisibility (View.GONE);
+        adapter.clear ();
+        adapter.notifyDataSetChanged ();
         try {
             JSONArray array = new JSONArray (string);
             for (int i=0;i<array.length ();i++){
