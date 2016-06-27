@@ -200,6 +200,12 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
 
     //evaluates the expression and displays on the screen
     void evaluate(String expression){
+
+        String functionDefination="";
+        //Adding userDefined functions
+        for(int i=0;i<CalculaterFragment.UserFunction.size ();i++){
+            functionDefination+=CalculaterFragment.UserFunction.get (i).getDefenation ();
+        }
         //Applying a right bracket check, if not compelete, add by ourself
         int bracketsLeft=0;
         for(int i=0;i<expression.length ();i++){
@@ -210,6 +216,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
             for(int i=0;i<bracketsLeft;i++)
                 expression+=")";
         //------------------------------
+        expression = functionDefination+expression;
         jsEvaluator.evaluate (expression, new JsCallback () {
             @Override
             public void onResult (final String result) {

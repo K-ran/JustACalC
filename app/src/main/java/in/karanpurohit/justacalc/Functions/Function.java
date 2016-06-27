@@ -1,5 +1,8 @@
 package in.karanpurohit.justacalc.Functions;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -8,13 +11,15 @@ import in.karanpurohit.justacalc.CONSTANTS;
 /**
  * Created by Karan Purohit on 23/6/16.
  */
-public class Function {
+public class Function implements Parcelable{
+
     private int id;
     private String name;
     private String defenation;
     private String description;
     private int userId;
     private int publish;
+
 
     public static Function createFromJsonObject(JSONObject object){
 
@@ -42,9 +47,24 @@ public class Function {
         this.id = id;
     }
 
+    public Function (Parcel in) {
+        String[] data=new String[6];
+        in.readStringArray (data);
+        id=Integer.parseInt (data[0]);
+        name = data[1];
+        defenation=data[2];
+        description=data[3];
+        userId=Integer.parseInt (data[4]);
+        publish=Integer.parseInt (data[5]);
+    }
+
     public String getName () {
 
         return name;
+    }
+
+    public int getId(){
+        return id;
     }
 
     public int isPublish () {
@@ -80,5 +100,34 @@ public class Function {
     public void setPublish (int publish) {
 
         this.publish = publish;
+    }
+
+    @Override
+    public int describeContents () {
+
+        return 0;
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Function createFromParcel(Parcel in) {
+            return new Function (in);
+        }
+
+        public Function[] newArray(int size) {
+            return new Function[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel (Parcel dest, int flags) {
+                dest.writeStringArray (new String[]{
+                      id+"",name,defenation,description,userId+"",publish+""
+                });
+    }
+
+    @Override
+    public boolean equals (Object o) {
+        Function other = (Function)o;
+        return (id==other.getId ());
     }
 }

@@ -25,24 +25,35 @@ import in.karanpurohit.justacalc.Functions.FunctionArrayAdaper;
 import in.karanpurohit.justacalc.Netwrokhandler.PostRequestHandler;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
+import in.karanpurohit.justacalc.User.User;
 
 public class CalculaterFragment extends Fragment implements PostRequestHandler.ResponseHandler {
 
 
-    public CalculaterFragment () {
-        // Required empty public constructor
-    }
-
-    static TextView tvExpression,tvResult;
+    public static ArrayList<Function> UserFunction;
     KeypadsPagerAdapter pagerAdapter;
     ViewPager pager;
     ImageView leftScrollIndecator,rightScrollindecator;
     ListView rightDrawerListView;
     ArrayList<Function> rightDrawerListArray;
     FunctionArrayAdaper adapter;
+    public static TextView tvExpression,tvResult;
+
+
+    public CalculaterFragment () {
+        // Required empty public constructor
+    }
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
                               Bundle savedInstanceState) {
+
+        UserFunction = new ArrayList<Function> ();
+        if(savedInstanceState != null && savedInstanceState.containsKey("userFunctionList")) {
+            UserFunction = savedInstanceState.getParcelableArrayList ("userFunctionList");
+        }
+        else  {
+            UserFunction = new ArrayList<Function> ();
+        }
 
         View view = inflater.inflate (R.layout.main_keypad_layout,container,false);
         tvExpression = (TextView)view.findViewById (R.id.tvExpression);
@@ -128,5 +139,11 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
     @Override
     public void onFailure (int status) {
 
+    }
+
+    @Override
+    public void onSaveInstanceState (Bundle outState){
+        outState.putParcelableArrayList ("userFunctionList",UserFunction);
+        super.onSaveInstanceState (outState);
     }
 }
