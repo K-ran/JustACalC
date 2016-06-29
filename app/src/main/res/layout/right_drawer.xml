@@ -47,5 +47,14 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent">
     </ListView>
+    <TextView
+        android:id="@+id/tvEmptyListItemView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Their are no results"
+        android:gravity="center"
+        style="@style/labelStyle"
+        android:visibility="gone"
+        />
 
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,6 +129,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                 adapter.notifyDataSetChanged ();
                 switch(checkedId){
                     case R.id.rgbItem1:
+                        Log.d("cool",""+radioGroup.getCheckedRadioButtonId());
                         if(!Session.isSomeOneLoggedIn(getContext())){
                             DialogFragment signInAlert = CustomAlertBox.newInstance("Oops", "You are not Signed in. ", "Sign in", "Later", new CustomAlertBox.CustomDialogClickListner() {
                                 @Override
@@ -138,7 +140,6 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
 
                                 @Override
                                 public void onNegativeClick() {
-                                    radioGroup.check (R.id.rgbItem2);
                                 }
                             });
                             signInAlert.show(getActivity().getSupportFragmentManager(),"");
@@ -194,7 +195,9 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
 
         //Setting up the right drawer list
         rightDrawerListView = (ListView)view.findViewById (R.id.lv_right_drawer_list);
-        rightDrawerListView.setAdapter (adapter);
+        rightDrawerListView.setAdapter(adapter);
+        rightDrawerListView.setEmptyView((TextView)view.findViewById(R.id.tvEmptyListItemView));
+        //--------------------
         return view;
     }
 
