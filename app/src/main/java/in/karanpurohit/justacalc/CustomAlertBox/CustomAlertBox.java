@@ -1,9 +1,9 @@
 package in.karanpurohit.justacalc.CustomAlertBox;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
 import in.karanpurohit.justacalc.R;
@@ -14,13 +14,15 @@ import in.karanpurohit.justacalc.R;
 public class CustomAlertBox extends DialogFragment {
     CustomDialogClickListner listner;
 
-
-    public static CustomAlertBox newInstance(String title,String Message, CustomDialogClickListner listner) {
+    public static CustomAlertBox newInstance(String title,String message,String ok,String cancel, CustomDialogClickListner listner) {
         CustomAlertBox frag = new CustomAlertBox();
         Bundle args = new Bundle();
         args.putString("title", title);
-        args.put
+        args.putString("message",message);
+        args.putString("ok",ok);
+        args.putString("cancel",cancel);
         frag.setArguments(args);
+        frag.setListner(listner);
         return frag;
     }
 
@@ -28,30 +30,40 @@ public class CustomAlertBox extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        int title = getArguments().getInt("title");
-        int ok = getArguments().getInt("ok");
-        int cancle = getArguments().getInt("cancle");
-        return new AlertDialog.Builder(getActivity())
-                .setTitle("")
-                .setMessage()
-                .setPositiveButton(ok,
+        String title = getArguments().getString("title");
+        String ok = getArguments().getString("ok");
+        String cancle = getArguments().getString("cancel");
+        String message = getArguments().getString("message");
+
+        AlertDialog.Builder builder =  new AlertDialog.Builder(getActivity())
+                .setTitle(title)
+                .setMessage(message);
+                if(ok!=null)
+                    builder.setPositiveButton(ok,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 listner.onPositiveClick();
                             }
                         }
-                )
-                .setNegativeButton(cancle,
+                );
+                if(cancle!=null)
+                    builder.setNegativeButton(cancle,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 listner.onNegativeClick();
                             }
                         }
-                )
-                .create();
+                );
+        return builder.create();
     }
 
-    interface CustomDialogClickListner{
+
+
+    public void setListner(CustomDialogClickListner listner) {
+        this.listner = listner;
+    }
+
+    public interface CustomDialogClickListner{
         void onPositiveClick();
         void onNegativeClick();
     }

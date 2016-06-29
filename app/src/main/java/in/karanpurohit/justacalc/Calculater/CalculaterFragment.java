@@ -1,7 +1,9 @@
 package in.karanpurohit.justacalc.Calculater;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
@@ -25,12 +27,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import in.karanpurohit.justacalc.CustomAlertBox.CustomAlertBox;
 import in.karanpurohit.justacalc.Functions.Function;
 import in.karanpurohit.justacalc.DrawerAdapters.RightDrawerArrayAdaper;
 import in.karanpurohit.justacalc.Netwrokhandler.GetRequestHandler;
 import in.karanpurohit.justacalc.Netwrokhandler.PostRequestHandler;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
+import in.karanpurohit.justacalc.SignInUp.SigninActivity;
 
 public class CalculaterFragment extends Fragment implements PostRequestHandler.ResponseHandler, GetRequestHandler.ResponseHandler {
 
@@ -115,7 +119,8 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
         //--------------------
 
         //RadioGrooup handelling
-        radioGroup.check (R.id.rgbItem1);
+        radioGroup.check (R.id.rgbItem2);
+        progressBar.setVisibility(View.GONE);
         radioGroup.setOnCheckedChangeListener (new RadioGroup.OnCheckedChangeListener () {
             @Override
             public void onCheckedChanged (RadioGroup group, int checkedId) {
@@ -123,7 +128,23 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                 adapter.notifyDataSetChanged ();
                 switch(checkedId){
                     case R.id.rgbItem1:
-                       sendMyFunctionRequest ();
+                        if(!Session.isSomeOneLoggedIn(getContext())){
+                            DialogFragment signInAlert = CustomAlertBox.newInstance("Oops", "You are not Signed in. ", "Sign in", "Later", new CustomAlertBox.CustomDialogClickListner() {
+                                @Override
+                                public void onPositiveClick() {
+                                    Intent intent = new Intent(getContext(), SigninActivity.class);
+                                    startActivity(intent);
+                                }
+
+                                @Override
+                                public void onNegativeClick() {
+                                    radioGroup.check (R.id.rgbItem2);
+                                }
+                            });
+                            signInAlert.show(getActivity().getSupportFragmentManager(),"");
+                        }
+                        else
+                            sendMyFunctionRequest ();
                         break;
                     case R.id.rgbItem2:
                         if(etSearchBox.getText ().toString ().length ()>=3)
@@ -174,7 +195,6 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
         //Setting up the right drawer list
         rightDrawerListView = (ListView)view.findViewById (R.id.lv_right_drawer_list);
         rightDrawerListView.setAdapter (adapter);
-        sendMyFunctionRequest ();
         return view;
     }
 
@@ -215,6 +235,8 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
     @Override
     public void onFailure (int status) {
         progressBar.setVisibility(View.GONE);
+        CustomAlertBox alertBox = CustomAlertBox.newInstance("Error","Cannot connect to the server!",null,null,null);
+        alertBox.show(getActivity().getSupportFragmentManager(),"");
     }
 
     @Override

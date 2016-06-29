@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -23,6 +24,7 @@ import com.evgenii.jsevaluator.interfaces.JsCallback;
 import in.karanpurohit.justacalc.AboutUs.AboutUsFragment;
 import in.karanpurohit.justacalc.CONSTANTS;
 import in.karanpurohit.justacalc.Create.CreateFragment;
+import in.karanpurohit.justacalc.CustomAlertBox.CustomAlertBox;
 import in.karanpurohit.justacalc.DrawerAdapters.LeftDrawerListAdapter;
 import in.karanpurohit.justacalc.MyFunctions.MyFunctionsFragment;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
@@ -115,17 +117,46 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                 fragmentTransaction.replace (R.id.content_frame, new CalculaterFragment ());
                 break;
             case 1:
-                fragmentTransaction.replace (R.id.content_frame, new MyFunctionsFragment ());
+                if(!Session.isSomeOneLoggedIn(getApplicationContext())){
+                    DialogFragment signInAlert = CustomAlertBox.newInstance("Oops", "You are not Signed in. ", "Sign in", "Later", new CustomAlertBox.CustomDialogClickListner() {
+                        @Override
+                        public void onPositiveClick() {
+                            Intent intent = new Intent(getApplicationContext(), SigninActivity.class);
+                            startActivity(intent);
+                        }
+                        @Override
+                        public void onNegativeClick() {
+                        }
+                    });
+                    signInAlert.show(getSupportFragmentManager(),"");
+                }
+                else
+                    fragmentTransaction.replace(R.id.content_frame, new MyFunctionsFragment());
                 break;
             case 2:
-                fragmentTransaction.replace (R.id.content_frame, new CreateFragment ());
+                if(!Session.isSomeOneLoggedIn(getApplicationContext())){
+                    DialogFragment signInAlert = CustomAlertBox.newInstance("Oops", "You are not Signed in. ", "Sign in", "Later", new CustomAlertBox.CustomDialogClickListner() {
+                        @Override
+                        public void onPositiveClick() {
+                            Intent intent = new Intent(getApplicationContext(), SigninActivity.class);
+                            startActivity(intent);
+                        }
+
+                        @Override
+                        public void onNegativeClick() {
+                        }
+                    });
+                    signInAlert.show(getSupportFragmentManager(),"");
+                }
+                else
+                    fragmentTransaction.replace(R.id.content_frame, new CreateFragment());
                 break;
             case 3:
-                fragmentTransaction.replace (R.id.content_frame, new AboutUsFragment ());
+                fragmentTransaction.replace(R.id.content_frame, new AboutUsFragment());
                 break;
 
         }
-        fragmentTransaction.commit ();
+        fragmentTransaction.commit();
     }
 
 

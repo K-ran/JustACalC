@@ -1,6 +1,7 @@
 package in.karanpurohit.justacalc.Create;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -28,6 +29,8 @@ public class FinishCreatingFragment extends Fragment implements PostRequestHandl
     CheckBox publish;
     EditText description;
     String defination,name;
+    ProgressDialog progress;
+
     public FinishCreatingFragment () {
         // Required empty public constructor
     }
@@ -43,10 +46,13 @@ public class FinishCreatingFragment extends Fragment implements PostRequestHandl
         description=(EditText)view.findViewById (R.id.etFunctonDescription);
         defination = getArguments ().getString ("defination");
         name = getArguments ().getString ("name");
+        progress = new ProgressDialog(getContext());
+        progress.setMessage (" Creating Function, please wait ..");
         finish.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
-                myOnClick (v);
+                progress.show();
+                myOnClick(v);
             }
         });
         return view;
@@ -54,12 +60,14 @@ public class FinishCreatingFragment extends Fragment implements PostRequestHandl
 
     @Override
     public void onSuccess (String string) {
+        progress.dismiss();
         Toast.makeText (getActivity (), "Successfully created function", Toast.LENGTH_LONG).show ();
         ((MainActivity)getActivity ()).popFronBackState ();
     }
 
     @Override
     public void onFailure (int status) {
+        progress.dismiss();
         Toast.makeText (getActivity (), "Oops, Something went wrong", Toast.LENGTH_SHORT).show ();
     }
 

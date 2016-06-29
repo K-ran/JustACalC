@@ -26,8 +26,8 @@ public class RightDrawerArrayAdaper extends ArrayAdapter<Function> {
 
     @Override
     public View getView (int position, View convertView, ViewGroup parent) {
-        if(convertView!=null)
-            return convertView;
+//        if(convertView!=null)
+//            return convertView;
         convertView = LayoutInflater.from (getContext ()).inflate (R.layout.right_drawer_list_item_layout,parent,false);
         TextView item = (TextView)convertView.findViewById (R.id.tvRightDrawerFunctionName);
         TextView description = (TextView)convertView.findViewById (R.id.tvRightDrawerFunctionDescription);
