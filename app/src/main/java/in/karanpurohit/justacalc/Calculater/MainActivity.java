@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                         @Override
                         public void onPositiveClick() {
                             Intent intent = new Intent(getApplicationContext(), SigninActivity.class);
-                            startActivity(intent);
+                            startActivityForResult(intent, MainActivity.SIGNIN_REQUEST_CODE);
                         }
                         @Override
                         public void onNegativeClick() {
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                         @Override
                         public void onPositiveClick() {
                             Intent intent = new Intent(getApplicationContext(), SigninActivity.class);
-                            startActivity(intent);
+                            startActivityForResult(intent, MainActivity.SIGNIN_REQUEST_CODE);
                         }
 
                         @Override
@@ -265,13 +265,13 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
         if(requestCode==SIGNIN_REQUEST_CODE)
             if(resultCode==RESULT_OK){
-                Log.d("Cool"," Request Code Okay");
+                Log.d("cool"," Request Code Okay");
                 String name = Session.getName (this);
                 tvNavName.setText (name);
                 loginButton.setText ("Logout");
             }
             else if(requestCode==RESULT_CANCELED){
-                Log.d("Cool"," Request Code Cancled");
+                Log.d("cool"," Request Code Cancled");
             }
         super.onActivityResult (requestCode, resultCode, data);
     }

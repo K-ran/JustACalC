@@ -135,7 +135,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                                 @Override
                                 public void onPositiveClick() {
                                     Intent intent = new Intent(getContext(), SigninActivity.class);
-                                    startActivity(intent);
+                                    startActivityForResult(intent, MainActivity.SIGNIN_REQUEST_CODE);
                                 }
 
                                 @Override
@@ -219,8 +219,8 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
 
     @Override
     public void onSuccess (String string) {
-        progressBar.setVisibility (View.GONE);
-        adapter.clear ();
+        progressBar.setVisibility(View.GONE);
+        adapter.clear();
         adapter.notifyDataSetChanged ();
         try {
             JSONArray array = new JSONArray (string);
@@ -239,12 +239,28 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
     public void onFailure (int status) {
         progressBar.setVisibility(View.GONE);
         CustomAlertBox alertBox = CustomAlertBox.newInstance("Error","Cannot connect to the server!",null,null,null);
-        alertBox.show(getActivity().getSupportFragmentManager(),"");
+        alertBox.show(getActivity().getSupportFragmentManager(), "");
     }
 
     @Override
     public void onSaveInstanceState (Bundle outState){
-        outState.putParcelableArrayList ("userFunctionList",UserFunction);
-        super.onSaveInstanceState (outState);
+        outState.putParcelableArrayList("userFunctionList", UserFunction);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onActivityResult (int requestCode, int resultCode, Intent data) {
+        Log.d("cool", "On activity Result called");
+        if(requestCode==MainActivity.SIGNIN_REQUEST_CODE)
+            if(resultCode==MainActivity.RESULT_OK){
+                Log.d("Cool"," Request Code Okay");
+                String name = Session.getName (getActivity());
+                ((MainActivity)getActivity()).tvNavName.setText(name);
+                ((MainActivity)getActivity()).loginButton.setText("Logout");
+            }
+            else if(requestCode==MainActivity.RESULT_CANCELED){
+                Log.d("Cool"," Request Code Cancled");
+            }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
