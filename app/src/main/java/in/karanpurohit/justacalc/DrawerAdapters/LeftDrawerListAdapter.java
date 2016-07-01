@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
 
 /**
@@ -20,10 +21,11 @@ public class LeftDrawerListAdapter extends BaseAdapter{
         this.context = context;
     }
 
-    String[] itemNames={"Calculater","My Function","Create","About us"};
+    String[] itemNames={"Calculater","My Function","Create","Login","About us"};
     int[] Imageid={R.drawable.ic_smartphone_black_48dp,
                     R.drawable.ic_home_black_48dp,
                     R.drawable.ic_add_black_48dp,
+                    R.drawable.ic_perm_identity_black_48dp,
                     R.drawable.ic_people_outline_black_48dp};
     @Override
     public int getCount () {
@@ -52,5 +54,13 @@ public class LeftDrawerListAdapter extends BaseAdapter{
         TextView tv = (TextView)view.findViewById (R.id.tvItemName);
         tv.setText (itemNames[position]);
         return view;
+    }
+
+    public void update(){
+        if(Session.isSomeOneLoggedIn(context)){
+            itemNames[3]="Logout";
+        }
+        else  itemNames[3]="Login";
+        notifyDataSetChanged();
     }
 }

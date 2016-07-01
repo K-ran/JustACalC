@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
     FragmentManager fragmentManager ;
     FragmentTransaction fragmentTransaction ;
     JsEvaluator jsEvaluator;
-    Button loginButton;
     TextView tvNavName;
     ListView navigationList;
+    public LeftDrawerListAdapter adapter;
     DrawerLayout drawerLayout;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -55,17 +55,16 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
             }
         jsEvaluator = new JsEvaluator (this);
         navigationList = (ListView)findViewById (R.id.lvNavigationList);
-        navigationList.setAdapter (new LeftDrawerListAdapter (this));
+        adapter = new LeftDrawerListAdapter(this);
+        navigationList.setAdapter (adapter);
         drawerLayout = (DrawerLayout)findViewById (R.id.drawer_layout);
-        loginButton = (Button)findViewById (R.id.btnSignin);
         tvNavName = (TextView)findViewById (R.id.tvNavName);
 
         //Change user name is user Already logged in
         if(Session.isSomeOneLoggedIn (this)){
-            loginButton.setText ("Logout");
             tvNavName.setText (Session.getName (this));
         }
-
+        adapter.update();
         // TODO:  Hiding the soft keyboard if using edittext
         //-----------------
 
@@ -76,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
             @Override
             public void onItemClick (AdapterView<?> parent, View view, final int position, long id) {
                 drawerLayout.closeDrawers ();
-
                 //new handler thread so that nav drawer closes smoothly
                 new Handler ().postDelayed (new Runnable () {
                     @Override
@@ -87,24 +85,6 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
             }
         });
 
-
-
-        //Setting up login button
-        loginButton.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick (View v) {
-
-                if (!Session.isSomeOneLoggedIn (getApplicationContext ())) {
-                    Intent intent = new Intent (MainActivity.this, SigninActivity.class);
-                    startActivityForResult (intent, SIGNIN_REQUEST_CODE);
-                }
-                else {
-                    Session.destroySession (getApplicationContext ());
-                    loginButton.setText ("Login");
-                    tvNavName.setText ("Guest");
-                }
-            }
-        });
         //--------------------------------------
 
     }
@@ -152,6 +132,16 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                     fragmentTransaction.replace(R.id.content_frame, new CreateFragment());
                 break;
             case 3:
+                if (!Session.isSomeOneLoggedIn (getApplicationContext ())) {
+                    Intent intent = new Intent (MainActivity.this, SigninActivity.class);
+                    startActivityForResult (intent, SIGNIN_REQUEST_CODE);
+                }
+                else {
+                    Session.destroySession (getApplicationContext ());
+                    tvNavName.setText ("Guest");
+                }
+                break;
+            case 4:
                 fragmentTransaction.replace(R.id.content_frame, new AboutUsFragment());
                 break;
 
@@ -206,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
             case R.id.tvKBComma:
             case R.id.tvKBDot:
                 CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString () + tvButton.getText ());
-                ;break;
+                break;
             case R.id.tvKBEqual:
                 evaluate (CalculaterFragment.tvExpression.getText ().toString ());
                 return;
@@ -265,10 +255,10 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
         if(requestCode==SIGNIN_REQUEST_CODE)
             if(resultCode==RESULT_OK){
+                adapter.update();
                 Log.d("cool"," Request Code Okay");
                 String name = Session.getName (this);
                 tvNavName.setText (name);
-                loginButton.setText ("Logout");
             }
             else if(requestCode==RESULT_CANCELED){
                 Log.d("cool"," Request Code Cancled");
