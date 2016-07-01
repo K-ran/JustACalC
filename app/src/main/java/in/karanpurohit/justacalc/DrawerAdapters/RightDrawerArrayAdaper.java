@@ -1,19 +1,27 @@
 package in.karanpurohit.justacalc.DrawerAdapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import in.karanpurohit.justacalc.Calculater.AddedFunctionFragment;
 import in.karanpurohit.justacalc.Calculater.CalculaterFragment;
 import in.karanpurohit.justacalc.Functions.Function;
+import in.karanpurohit.justacalc.Netwrokhandler.PostRequestHandler;
+import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
 
 /**
@@ -25,12 +33,70 @@ public class RightDrawerArrayAdaper extends ArrayAdapter<Function> {
     }
 
     @Override
-    public View getView (int position, View convertView, ViewGroup parent) {
-//        if(convertView!=null)
-//            return convertView;
-        convertView = LayoutInflater.from (getContext ()).inflate (R.layout.right_drawer_list_item_layout,parent,false);
+    public View getView (final int position, View convertView, ViewGroup parent) {
+        if(convertView==null)
+            convertView = LayoutInflater.from (getContext ()).inflate (R.layout.right_drawer_list_item_layout,parent,false);
         TextView item = (TextView)convertView.findViewById (R.id.tvRightDrawerFunctionName);
         TextView description = (TextView)convertView.findViewById (R.id.tvRightDrawerFunctionDescription);
+        TextView tvVotes = (TextView)convertView.findViewById (R.id.tvRightDrawerFunctionVotes);
+        final ImageView like = (ImageView)convertView.findViewById(R.id.ivRightDrawerLikeButton);
+        like.setImageResource(android.R.color.transparent);
+        int votes = getItem(position).getVotes();
+        tvVotes.setText("Found useful by "+votes+" people");
+        if(!Session.isSomeOneLoggedIn(getContext()))
+            like.setVisibility(View.GONE);
+        else {
+            HashMap<String, String> para = new HashMap<String, String>();
+            para.put("token",Session.getToken(getContext()));
+            new PostRequestHandler(para, "/isliked/" + getItem(position).getId(), new PostRequestHandler.ResponseHandler() {
+                @Override
+                public void onSuccess(String string) {
+                    try {
+                        Log.d("cool", string);
+                        JSONObject obj = new JSONObject(string);
+                        if(obj.getString("message").equals("true"))
+                            like.setImageResource(R.drawable.ic_thumb_down_black_48dp);
+                        else
+                            like.setImageResource(R.drawable.ic_thumb_up_black_48dp);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(int status) {
+
+                }
+            },getContext());
+
+            like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HashMap<String, String> para = new HashMap<String, String>();
+                    para.put("token",Session.getToken(getContext()));
+                    new PostRequestHandler(para, "/like/" + getItem(position).getId(), new PostRequestHandler.ResponseHandler() {
+                        @Override
+                        public void onSuccess(String string) {
+                            try {
+                                Log.d("cool", string);
+                                JSONObject obj = new JSONObject(string);
+                                if(obj.getString("message").equals("voted"))
+                                    like.setImageResource(R.drawable.ic_thumb_down_black_48dp);
+                                else
+                                    like.setImageResource(R.drawable.ic_thumb_up_black_48dp);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(int status) {
+
+                        }
+                    },getContext());
+                }
+            });
+        }
         final Function function = getItem (position);
         Button use = (Button)convertView.findViewById (R.id.btnRightDrawerAddButton);
         String name = function.getName ();
@@ -50,4 +116,5 @@ public class RightDrawerArrayAdaper extends ArrayAdapter<Function> {
         });
         return convertView;
     }
+
 }

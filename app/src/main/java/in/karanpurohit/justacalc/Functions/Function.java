@@ -20,17 +20,19 @@ public class Function implements Parcelable{
     private int userId;
     private int publish;
 
+    private int votes;
 
     public static Function createFromJsonObject(JSONObject object){
 
         try {
             int id  = object.getInt(CONSTANTS.FUNCTION_ID);
-            String name=object.getString (CONSTANTS.FUNCTION_NAME);
+            String name=object.getString(CONSTANTS.FUNCTION_NAME);
             String defenation=object.getString (CONSTANTS.FUNCTION_DEFINATION);
             String description=object.getString (CONSTANTS.FUNCTION_DESCRIPTION);
-            int userId=object.getInt (CONSTANTS.FUNCTION_USERID);;
+            int userId=object.getInt(CONSTANTS.FUNCTION_USERID);
             int publish=object.getInt (CONSTANTS.FUNCTION_PUBLIC);
-            return new Function (id,name,defenation,userId,description,publish);
+            int votes = object.optInt(CONSTANTS.FUNCTION_VOTES,0);
+            return new Function (id,name,defenation,userId,description,publish,votes);
         }
         catch (JSONException e) {
             e.printStackTrace ();
@@ -38,13 +40,15 @@ public class Function implements Parcelable{
         return null;
     }
 
-    public Function (int id,String name, String defenation, int userId, String description, int publish) {
+
+    public Function (int id,String name, String defenation, int userId, String description, int publish,int votes) {
         this.name = name;
         this.defenation = defenation;
         this.userId = userId;
         this.description = description;
         this.publish = publish;
         this.id = id;
+        this.votes = votes;
     }
 
     public Function (Parcel in) {
@@ -70,6 +74,10 @@ public class Function implements Parcelable{
     public int isPublish () {
 
         return publish;
+    }
+
+    public int getVotes() {
+        return votes;
     }
 
     public int getUserId () {

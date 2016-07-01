@@ -32,5 +32,6 @@ public class CONSTANTS {
     public static final String FUNCTION_USERID = "user_id";
     public static final String FUNCTION_DEFINATION = "defination";
     public static final String FUNCTION_PUBLIC = "public";
+    public static final String FUNCTION_VOTES = "votes";
 
 }

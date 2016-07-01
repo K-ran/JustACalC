@@ -104,7 +104,7 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
         if(status==406)
             Toast.makeText (SigninActivity.this, "Incorrect Crendentials", Toast.LENGTH_SHORT).show ();
         else
-            Toast.makeText (SigninActivity.this, "Oops, something went wrong", Toast.LENGTH_SHORT).show ();
+            Toast.makeText (SigninActivity.this, "Oops, something went wrong "+status , Toast.LENGTH_SHORT).show ();
         Log.d ("Coool", "At least error is working ;)");
     }
 }

@@ -1,6 +1,7 @@
 package in.karanpurohit.justacalc.Calculater;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +24,10 @@ public class AddedFunctionListAdapter extends ArrayAdapter<Function>{
     }
 
     @Override
-    public View getView (int position, View convertView, ViewGroup parent) {
-        if(convertView!=null)
-            return convertView;
-        convertView = LayoutInflater.from (getContext ()).inflate (R.layout.added_function_list_item_layout,parent,false);
+    public View getView (final int position, View convertView, ViewGroup parent) {
+        if(convertView==null) {
+            convertView  = LayoutInflater.from(getContext()).inflate (R.layout.added_function_list_item_layout,parent,false);
+        }
         TextView item = (TextView)convertView.findViewById (R.id.tvAddedListFunctionName);
         TextView description = (TextView)convertView.findViewById (R.id.tvAddedListFunctionDescription);
         final Function function = getItem (position);
@@ -47,7 +48,8 @@ public class AddedFunctionListAdapter extends ArrayAdapter<Function>{
         remove.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
-                remove (function);
+                Log.d("cool", "onClick: " + position);
+                remove (getItem(position));
                 notifyDataSetChanged ();
             }
         });
