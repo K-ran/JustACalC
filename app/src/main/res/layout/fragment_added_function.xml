@@ -3,14 +3,13 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
               android:orientation="vertical"
-              android:background="@color/colorPrimaryDark"
+              android:background="@color/colorPrimary"
              android:paddingTop="15dp"
              tools:context="in.karanpurohit.justacalc.Calculater.AddedFunctionFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         style="@style/labelStyle"
-        android:textColor="@color/white"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

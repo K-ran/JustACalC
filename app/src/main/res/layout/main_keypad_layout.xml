@@ -10,8 +10,8 @@
         android:orientation="vertical"
         android:weightSum="100"
         tools:context=".Calculater.MainActivity">
-        <TextView
-            android:textSize="20dp"
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
+            android:textSize="30dp"
             android:gravity="right|center_vertical"
             android:padding="@dimen/standard_horizontal_padding"
             android:id="@+id/tvExpression"
@@ -20,7 +20,7 @@
             android:layout_height="0dp"
             android:background="@color/white"
             android:text="Expression"/>
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             android:background="@color/white"
             android:gravity="right|center_vertical"
             android:id="@+id/tvResult"

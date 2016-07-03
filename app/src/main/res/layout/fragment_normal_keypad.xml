@@ -12,21 +12,21 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             style="@style/keypadbuttonstyle"
             android:text="7"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKB7"/>
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             style="@style/keypadbuttonstyle"
             android:text="8"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKB8"/>
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             style="@style/keypadbuttonstyle"
             android:text="9"
             android:layout_weight="1"
@@ -43,21 +43,21 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             style="@style/keypadbuttonstyle"
             android:text="4"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKB4"/>
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             style="@style/keypadbuttonstyle"
             android:text="5"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKB5"/>
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             style="@style/keypadbuttonstyle"
             android:text="6"
             android:layout_weight="1"
@@ -72,21 +72,21 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             style="@style/keypadbuttonstyle"
             android:text="1"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKB1"/>
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             style="@style/keypadbuttonstyle"
             android:text="2"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKB2"/>
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             style="@style/keypadbuttonstyle"
             android:text="3"
             android:layout_weight="1"
@@ -101,21 +101,21 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             style="@style/keypadbuttonstyle"
             android:text="."
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKBDot"/>
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             style="@style/keypadbuttonstyle"
             android:text="0"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKB0"/>
-        <TextView
+        <in.karanpurohit.justacalc.CustomViews.MyTextView
             style="@style/keypadbuttonstyle"
             android:text="="
             android:layout_weight="1"

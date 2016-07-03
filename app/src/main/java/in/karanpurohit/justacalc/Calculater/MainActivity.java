@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         Log.d ("cool", "Button clicked");
         TextView tvButton = (TextView)view;
         switch(tvButton.getId ()){
-            case R.id.tvKBMul:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString () + "*");break;
+            case R.id.tvKBMul:
             case R.id.tvKB0:
             case R.id.tvKB1:
             case R.id.tvKB2:
@@ -232,6 +232,12 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         for(int i=0;i<expression.length ();i++){
             if(expression.charAt (i)=='(') bracketsLeft++;
             else if(expression.charAt (i)==')')bracketsLeft--;
+            else if(expression.charAt (i)==getString(R.string.division).charAt(0)){
+                expression = expression.substring(0,i)+'/'+expression.substring(i+1);
+            }
+            else if(expression.charAt (i)=='x'){
+                expression = expression.substring(0,i)+'*'+expression.substring(i+1);
+            }
         }
         if(bracketsLeft>=0)
             for(int i=0;i<bracketsLeft;i++)
