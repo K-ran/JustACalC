@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
     FragmentTransaction fragmentTransaction ;
     JsEvaluator jsEvaluator;
     TextView tvNavName;
+    View navListHeader;
     ListView navigationList;
     public LeftDrawerListAdapter adapter;
     DrawerLayout drawerLayout;
@@ -53,12 +54,17 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                 fragmentTransaction.add (R.id.content_frame,new CalculaterFragment ());
                 fragmentTransaction.commit ();
             }
+        navListHeader = (View)getLayoutInflater ().inflate (R.layout.navlist_header,null);
+
         jsEvaluator = new JsEvaluator (this);
+
         navigationList = (ListView)findViewById (R.id.lvNavigationList);
+        navigationList.addHeaderView (navListHeader);
         adapter = new LeftDrawerListAdapter(this);
         navigationList.setAdapter (adapter);
+
         drawerLayout = (DrawerLayout)findViewById (R.id.drawer_layout);
-        tvNavName = (TextView)findViewById (R.id.tvNavName);
+        tvNavName = (TextView)navListHeader.findViewById (R.id.tvNavName);
 
         //Change user name is user Already logged in
         if(Session.isSomeOneLoggedIn (this)){
@@ -93,10 +99,10 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
     void changeFragment(int position){
         fragmentTransaction = fragmentManager.beginTransaction ();
         switch (position) {
-            case 0:
+            case 1:
                 fragmentTransaction.replace (R.id.content_frame, new CalculaterFragment ());
                 break;
-            case 1:
+            case 2:
                 if(!Session.isSomeOneLoggedIn(getApplicationContext())){
                     DialogFragment signInAlert = CustomAlertBox.newInstance("Oops", "You are not Signed in. ", "Sign in", "Later", new CustomAlertBox.CustomDialogClickListner() {
                         @Override
@@ -113,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                 else
                     fragmentTransaction.replace(R.id.content_frame, new MyFunctionsFragment());
                 break;
-            case 2:
+            case 3:
                 if(!Session.isSomeOneLoggedIn(getApplicationContext())){
                     DialogFragment signInAlert = CustomAlertBox.newInstance("Oops", "You are not Signed in. ", "Sign in", "Later", new CustomAlertBox.CustomDialogClickListner() {
                         @Override
@@ -131,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                 else
                     fragmentTransaction.replace(R.id.content_frame, new CreateFragment());
                 break;
-            case 3:
+            case 4:
                 if (!Session.isSomeOneLoggedIn (getApplicationContext ())) {
                     Intent intent = new Intent (MainActivity.this, SigninActivity.class);
                     startActivityForResult (intent, SIGNIN_REQUEST_CODE);
@@ -141,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                     tvNavName.setText ("Guest");
                 }
                 break;
-            case 4:
+            case 5:
                 fragmentTransaction.replace(R.id.content_frame, new AboutUsFragment());
                 break;
 

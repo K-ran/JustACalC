@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-<ImageView
-    android:visibility="invisible"
-    android:id="@+id/ivListIcon"
-    android:padding="@dimen/standard_horizontal_margin"
-    android:layout_weight="15"
-    android:layout_width="0dp"
-    android:layout_height="40dp"/>
-
-    <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
-        android:paddingLeft="30dp"
-        android:textColor="@android:color/black"
-        android:gravity="center|left"
-        android:textSize="18dp"
-        android:text="test"
-        android:id="@+id/tvItemName"
-        android:layout_weight="85"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/ivListIcon"
+            android:padding="@dimen/standard_horizontal_margin"
+            android:layout_weight="15"
+            android:layout_width="0dp"
+            android:layout_height="30dp"/>
+            <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
+                android:paddingLeft="30dp"
+                android:layout_gravity="center_vertical"
+                textColor="@android:color/black"
+                android:gravity="center|left"
+                android:textSize="18dp"
+                android:text="test"
+                android:id="@+id/tvItemName"
+                android:layout_weight="85"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
 </LinearLayout>
