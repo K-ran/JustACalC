@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                 break;
 
         }
+        fragmentTransaction.setTransition (FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         fragmentTransaction.commit();
     }
 

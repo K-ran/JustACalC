@@ -90,6 +90,14 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
         final Typeface halveticaNormal = Typeface.createFromAsset (getContext ().getAssets (), getContext ().getString (R.string.helveticaNormal));
         //--------------------------//
 
+
+        //Managing screen rotation for textView
+        if(savedInstanceState != null && savedInstanceState.containsKey("expression") && savedInstanceState.containsKey("result")) {
+            tvExpression.setText (savedInstanceState.getString ("expression"));
+            tvResult.setText (savedInstanceState.getString("result"));
+        }
+        //----------------------------------------
+
         //Setting up view pager
         pagerAdapter = new KeypadsPagerAdapter (getChildFragmentManager ());
         pager.setAdapter (pagerAdapter);
@@ -273,7 +281,9 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
 
     @Override
     public void onSaveInstanceState (Bundle outState){
-        outState.putParcelableArrayList("userFunctionList", UserFunction);
+        outState.putParcelableArrayList ("userFunctionList", UserFunction);
+        outState.putString ("expression",tvExpression.getText ().toString ());
+        outState.putString ("result",tvResult.getText ().toString ());
         super.onSaveInstanceState(outState);
     }
 
