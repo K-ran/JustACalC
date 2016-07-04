@@ -1,6 +1,7 @@
 package in.karanpurohit.justacalc.DrawerAdapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,7 @@ public class RightDrawerArrayAdaper extends ArrayAdapter<Function> {
         final ImageView like = (ImageView)convertView.findViewById(R.id.ivRightDrawerLikeButton);
         like.setImageResource(android.R.color.transparent);
         int votes = getItem(position).getVotes();
-        tvVotes.setText("Found useful by "+votes+" people");
+        tvVotes.setText("Found useful by "+votes+" person");
         if(!Session.isSomeOneLoggedIn(getContext()))
             like.setVisibility(View.GONE);
         else {
@@ -98,18 +99,20 @@ public class RightDrawerArrayAdaper extends ArrayAdapter<Function> {
             });
         }
         final Function function = getItem (position);
-        Button use = (Button)convertView.findViewById (R.id.btnRightDrawerAddButton);
+        Button addbtn = (Button)convertView.findViewById (R.id.btnRightDrawerAddButton);
+        addbtn.setTypeface (Typeface.createFromAsset (getContext ().getAssets (),getContext ().getString (R.string.helveticaBold)));
         String name = function.getName ();
         item.setText (name);
         description.setText(function.getDescription ());
 
-        use.setOnClickListener (new View.OnClickListener () {
+        addbtn.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
+
                 if (!CalculaterFragment.UserFunction.contains (function)) {
                     CalculaterFragment.UserFunction.add (function);
                     AddedFunctionFragment.adapter.notifyDataSetChanged ();
-                    Toast.makeText (getContext (), function.getName () + " Added to use List", Toast.LENGTH_SHORT).show ();
+                    Toast.makeText (getContext (), function.getName () + " Added to addbtn List", Toast.LENGTH_SHORT).show ();
                 }
                 else Toast.makeText (getContext (), "Already added", Toast.LENGTH_SHORT).show ();
             }

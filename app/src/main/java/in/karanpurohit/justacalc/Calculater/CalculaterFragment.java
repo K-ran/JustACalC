@@ -2,9 +2,12 @@ package in.karanpurohit.justacalc.Calculater;
 
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -49,6 +53,8 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
     RightDrawerArrayAdaper adapter;
     public static TextView tvExpression,tvResult;
     RadioGroup radioGroup;
+    RadioButton rb1,rb2; //radio buttons
+
     EditText etSearchBox;
     ProgressBar progressBar;
 
@@ -79,6 +85,9 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
         rightScrollindecator= (ImageView)view.findViewById (R.id.scrollIndicatorRight);
         rightDrawerListArray = new ArrayList<Function> ();
         adapter = new RightDrawerArrayAdaper (getActivity (),rightDrawerListArray);
+        rb1 = (RadioButton)view.findViewById (R.id.rgbItem1);
+        rb2 = (RadioButton)view.findViewById (R.id.rgbItem2);
+        final Typeface halveticaNormal = Typeface.createFromAsset (getContext ().getAssets (), getContext ().getString (R.string.helveticaNormal));
         //--------------------------//
 
         //Setting up view pager
@@ -119,14 +128,34 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
         pager.setCurrentItem (1);
         //--------------------
 
-        //RadioGrooup handelling
+        //Setting up RadioGrooup
         radioGroup.check (R.id.rgbItem2);
+        rb1.setTypeface (halveticaNormal);
+        rb2.setTypeface (halveticaNormal);
+        rb2.setTextColor (ContextCompat.getColor (getContext (),R.color.colorAccent));
         progressBar.setVisibility(View.GONE);
         radioGroup.setOnCheckedChangeListener (new RadioGroup.OnCheckedChangeListener () {
             @Override
             public void onCheckedChanged (RadioGroup group, int checkedId) {
                 adapter.clear ();
                 adapter.notifyDataSetChanged ();
+
+                //Changing the highlight of the radio buttonss
+                if(rb1.isChecked ()){
+                    rb1.setTextColor (ContextCompat.getColor (getContext (), R.color.colorAccent));
+                }
+                else
+                    rb1.setTextColor (Color.BLACK);
+
+
+                if(rb2.isChecked ()){
+                    rb2.setTextColor (ContextCompat.getColor (getContext (), R.color.colorAccent));
+
+                }
+                else
+                    rb2.setTextColor (Color.BLACK);
+
+
                 switch(checkedId){
                     case R.id.rgbItem1:
                         Log.d("cool",""+radioGroup.getCheckedRadioButtonId());
@@ -137,7 +166,6 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                                     Intent intent = new Intent(getContext(), SigninActivity.class);
                                     startActivityForResult(intent, MainActivity.SIGNIN_REQUEST_CODE);
                                 }
-
                                 @Override
                                 public void onNegativeClick() {
                                 }
@@ -169,6 +197,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
         //---------------------
 
         //Setting up search box
+        etSearchBox.setTypeface (halveticaNormal);
         etSearchBox.addTextChangedListener (new TextWatcher () {
             @Override
             public void beforeTextChanged (CharSequence s, int start, int count, int after) {

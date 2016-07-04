@@ -4,35 +4,35 @@
               android:weightSum="5"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <in.karanpurohit.justacalc.CustomViews.MyTextView
+    <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
         android:id="@+id/tvKBDel"
         style="@style/keypadbuttonstylefunction"
         android:text="Del"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
-    <in.karanpurohit.justacalc.CustomViews.MyTextView
+    <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
         android:id="@+id/tvKBDivide"
         style="@style/keypadbuttonstylefunction"
         android:text="@string/division"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
-    <in.karanpurohit.justacalc.CustomViews.MyTextView
+    <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
         android:id="@+id/tvKBMul"
         style="@style/keypadbuttonstylefunction"
         android:text="x"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
-    <in.karanpurohit.justacalc.CustomViews.MyTextView
+    <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
         android:id="@+id/tvKBMinus"
         style="@style/keypadbuttonstylefunction"
         android:text="-"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
-    <in.karanpurohit.justacalc.CustomViews.MyTextView
+    <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
         android:id="@+id/tvKBPlus"
         style="@style/keypadbuttonstylefunction"
         android:text="+"

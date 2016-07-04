@@ -8,12 +8,20 @@
              tools:context="in.karanpurohit.justacalc.Calculater.AddedFunctionFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalBold
         style="@style/labelStyle"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Added functions"/>
+    <View
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
     <ListView
         android:id="@+id/lvAddedFunctionList"
         android:layout_width="match_parent"

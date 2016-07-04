@@ -12,22 +12,22 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
-            style="@style/keypadbuttonstyle"
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            style="@style/keypadbuttonstyleScientific"
             android:text="sin"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKBSin"/>
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
-            style="@style/keypadbuttonstyle"
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            style="@style/keypadbuttonstyleScientific"
             android:text="cos"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKBCos"/>
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
-            style="@style/keypadbuttonstyle"
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            style="@style/keypadbuttonstyleScientific"
             android:text="tan"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -43,22 +43,22 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
-            style="@style/keypadbuttonstyle"
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            style="@style/keypadbuttonstyleScientific"
             android:text="ln"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKBln"/>
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
-            style="@style/keypadbuttonstyle"
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            style="@style/keypadbuttonstyleScientific"
             android:text="log"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKBlog"/>
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
-            style="@style/keypadbuttonstyle"
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            style="@style/keypadbuttonstyleScientific"
             android:text="@string/sqrt"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -72,23 +72,23 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
             android:id="@+id/tvKBPi"
-            style="@style/keypadbuttonstyle"
+            style="@style/keypadbuttonstyleScientific"
             android:text="pi"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             />
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
-            style="@style/keypadbuttonstyle"
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            style="@style/keypadbuttonstyleScientific"
             android:text="e"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKBexponent"/>
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
-            style="@style/keypadbuttonstyle"
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            style="@style/keypadbuttonstyleScientific"
             android:text="^"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -102,23 +102,23 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
-            style="@style/keypadbuttonstyle"
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            style="@style/keypadbuttonstyleScientific"
             android:text="("
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKBLeftBracket"/>
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
-            style="@style/keypadbuttonstyle"
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            style="@style/keypadbuttonstyleScientific"
             android:text=")"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/tvKBRightBracket"/>
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
             android:id="@+id/tvKBComma"
-            style="@style/keypadbuttonstyle"
+            style="@style/keypadbuttonstyleScientific"
             android:text=","
             android:layout_weight="1"
             android:layout_width="0dp"

@@ -11,7 +11,8 @@
         android:background="?android:attr/selectableItemBackground"
         android:layout_width="match_parent"
         android:minHeight="120dp"
-        card:cardBackgroundColor="@color/cardview_dark_background"
+        android:elevation="10dp"
+        card:cardBackgroundColor="@color/cardview_light_background"
         android:layout_height="wrap_content">
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,19 +20,22 @@
             android:padding="@dimen/standard_vertical_padding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:textColor="@color/white"
-                android:textStyle="bold"
+            <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalBold
                 style="@style/labelStyle"
+                android:textStyle="bold"
+                android:textSize="20dp"
                 android:id="@+id/tvAddedListFunctionName"
                 android:text="Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+            <View
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
             <ScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:textColor="@color/white"
+                <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
                     android:id="@+id/tvAddedListFunctionDescription"
                     android:text="Description"
                     style="@style/labelStyle"
@@ -44,17 +48,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
+                    style="@style/rightDrawerButtonStyle"
+                    android:textColor="@color/colorAccent"
                     android:id="@+id/btnAddedListUseButton"
                     android:layout_marginTop="10dp"
-                    style="@style/rightDrawerButtonStyle"
-                    android:text="Use"
+                    android:text="Use it"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <Button
+                    style="@style/rightDrawerButtonStyle"
                     android:layout_marginLeft="10dp"
                     android:id="@+id/btnAddedListRemoveButton"
                     android:layout_marginTop="10dp"
-                    style="@style/rightDrawerButtonStyle"
                     android:text="Remove"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

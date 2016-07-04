@@ -3,6 +3,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="sqrt">√</string>
+    <string name="sqrt">\u221A</string>
     <string name="division">\u00F7</string>
+    <string name="helveticaBold">fonts/HelveticaNeue-Condensed.otf</string>
+    <string name="helveticaThin">fonts/HelveticaNeue-UltraLigExt.otf</string>
+    <string name="helveticaNormal">fonts/HelveticaNeueLTStd-Lt.otf</string>
 </resources>

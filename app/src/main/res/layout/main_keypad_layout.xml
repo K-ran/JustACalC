@@ -10,17 +10,18 @@
         android:orientation="vertical"
         android:weightSum="100"
         tools:context=".Calculater.MainActivity">
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
-            android:textSize="30dp"
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            android:textSize="35dp"
             android:gravity="right|center_vertical"
             android:padding="@dimen/standard_horizontal_padding"
             android:id="@+id/tvExpression"
-            android:layout_weight="20"
+            android:layout_weight="25"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/white"
             android:text="Expression"/>
-        <in.karanpurohit.justacalc.CustomViews.MyTextView
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            android:textSize="25dp"
             android:background="@color/white"
             android:gravity="right|center_vertical"
             android:id="@+id/tvResult"
@@ -31,7 +32,7 @@
             android:text="Result"/>
         <LinearLayout
             android:layout_marginTop="@dimen/standard_horizontal_margin"
-            android:layout_weight="70"
+            android:layout_weight="65"
             android:weightSum="4"
             android:orientation="horizontal"
             android:layout_width="match_parent"

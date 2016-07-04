@@ -1,6 +1,7 @@
 package in.karanpurohit.justacalc.Calculater;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,8 @@ public class AddedFunctionListAdapter extends ArrayAdapter<Function>{
         final Function function = getItem (position);
         Button use = (Button)convertView.findViewById (R.id.btnAddedListUseButton);
         Button remove = (Button)convertView.findViewById (R.id.btnAddedListRemoveButton);
+        use.setTypeface (Typeface.createFromAsset (getContext ().getAssets (),getContext ().getString (R.string.helveticaBold)));
+        remove.setTypeface (Typeface.createFromAsset (getContext ().getAssets (),getContext ().getString (R.string.helveticaBold)));
         String name = function.getName ();
         item.setText (name);
         description.setText(function.getDescription ());
