@@ -49,6 +49,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
     ViewPager pager;
     ImageView leftScrollIndecator,rightScrollindecator,middelScrollindecator;
     ListView rightDrawerListView;
+    TextView tvEmptyListItemView;
     ArrayList<Function> rightDrawerListArray;
     RightDrawerArrayAdaper adapter;
     public static TextView tvExpression,tvResult;
@@ -223,12 +224,14 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
             @Override
             public void afterTextChanged (Editable s) {
                 String query = etSearchBox.getText ().toString();
+                tvEmptyListItemView.setText ("No results");
                 switch(radioGroup.getCheckedRadioButtonId ()){
                     case R.id.rgbItem2:
                         if(query.length ()>=1){
                             sendGlobalFunctionRequest (query);
                         }
                         else{
+                            tvEmptyListItemView.setText ("Search functions by typing their name in the search box");
                             adapter.clear ();
                             adapter.notifyDataSetChanged ();
                         }
@@ -242,15 +245,15 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                         }
                         break;
                 }
-
             }
         });
         //--------------------------
-
         //Setting up the right drawer list
         rightDrawerListView = (ListView)view.findViewById (R.id.lv_right_drawer_list);
         rightDrawerListView.setAdapter(adapter);
-        rightDrawerListView.setEmptyView((TextView)view.findViewById(R.id.tvEmptyListItemView));
+        tvEmptyListItemView  = (TextView)view.findViewById(R.id.tvEmptyListItemView);
+        tvEmptyListItemView.setText ("Search functions by typing their name in the search box");
+        rightDrawerListView.setEmptyView(tvEmptyListItemView);
         //--------------------
         return view;
     }
