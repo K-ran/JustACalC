@@ -66,12 +66,14 @@
                     android:id="@+id/btnMyFunctionsUpdateButton"
                     style="@style/rightDrawerButtonStyle"
                     android:text="Update"
+                    android:textSize="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     />
                 <Button
                     android:layout_toRightOf="@id/btnMyFunctionsUpdateButton"
+                    android:textSize="15dp"
                     android:id="@+id/btnMyFunctionsDeleteButton"
                     style="@style/rightDrawerButtonStyle"
                     android:text="Delete"

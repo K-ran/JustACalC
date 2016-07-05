@@ -2,6 +2,7 @@ package in.karanpurohit.justacalc.MyFunctions;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,9 @@ public class MyFunctionsArrayAdapter extends ArrayAdapter<Function> {
         update = (Button)convertView.findViewById (R.id.btnMyFunctionsUpdateButton);
         delete  = (Button)convertView.findViewById (R.id.btnMyFunctionsDeleteButton);
 
+        update.setTypeface(Typeface.createFromAsset(getContext().getAssets(),getContext().getString(R.string.helveticaNormal)));
+        delete.setTypeface(Typeface.createFromAsset(getContext().getAssets(),getContext().getString(R.string.helveticaNormal)));
+
         update.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
@@ -66,8 +70,7 @@ public class MyFunctionsArrayAdapter extends ArrayAdapter<Function> {
                                 dialog.show ();
                                 HashMap<String, String> param = new HashMap<String, String> ();
                                 param.put ("token", Session.getToken (getContext ()));
-                                param.put ("function_id", getItem (position).getId () + "");
-                                new PostRequestHandler (param, "/delete", new PostRequestHandler.ResponseHandler () {
+                                new PostRequestHandler (param, "/delete/"+getItem(position).getId(), new PostRequestHandler.ResponseHandler () {
                                     @Override
                                     public void onSuccess (String string) {
 
