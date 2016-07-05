@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                 else {
                     Session.destroySession (getApplicationContext ());
                     tvNavName.setText ("Guest");
+                    adapter.update ();
                 }
                 break;
             case 5:

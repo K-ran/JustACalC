@@ -182,6 +182,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                             signInAlert.show(getActivity().getSupportFragmentManager(),"");
                         }
                         else
+                            tvEmptyListItemView.setText ("No results");
                             if(etSearchBox.getText ().toString ().length ()>=1){
                                 sendMyFunctionRequest (etSearchBox.getText ().toString ());
                             }
@@ -190,7 +191,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                             }
                         break;
                     case R.id.rgbItem2:
-                        if(etSearchBox.getText ().toString ().length ()>=1)
+                        if(etSearchBox.getText ().toString ().length () >= 1)
                             sendGlobalFunctionRequest (etSearchBox.getText ().toString ());
                         break;
                 }
