@@ -181,10 +181,15 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                             signInAlert.show(getActivity().getSupportFragmentManager(),"");
                         }
                         else
-                            sendMyFunctionRequest ();
+                            if(etSearchBox.getText ().toString ().length ()>=1){
+                                sendMyFunctionRequest (etSearchBox.getText ().toString ());
+                            }
+                            else{
+                                sendMyFunctionRequest ();
+                            }
                         break;
                     case R.id.rgbItem2:
-                        if(etSearchBox.getText ().toString ().length ()>=3)
+                        if(etSearchBox.getText ().toString ().length ()>=1)
                             sendGlobalFunctionRequest (etSearchBox.getText ().toString ());
                         break;
                 }
@@ -218,14 +223,26 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
             @Override
             public void afterTextChanged (Editable s) {
                 String query = etSearchBox.getText ().toString();
-                if(radioGroup.getCheckedRadioButtonId ()==R.id.rgbItem2 &&
-                     query.length ()>=3){
-                    sendGlobalFunctionRequest (query);
+                switch(radioGroup.getCheckedRadioButtonId ()){
+                    case R.id.rgbItem2:
+                        if(query.length ()>=1){
+                            sendGlobalFunctionRequest (query);
+                        }
+                        else{
+                            adapter.clear ();
+                            adapter.notifyDataSetChanged ();
+                        }
+                        break;
+                    case R.id.rgbItem1:
+                        if(query.length ()>=1){
+                            sendMyFunctionRequest (query);
+                        }
+                        else{
+                            sendMyFunctionRequest ();
+                        }
+                        break;
                 }
-                else{
-                    adapter.clear ();
-                    adapter.notifyDataSetChanged ();
-                }
+
             }
         });
         //--------------------------
@@ -245,6 +262,15 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
             HashMap<String,String> param = new HashMap<String,String> ();
             param.put ("token",Session.getToken (getActivity ()));
             new PostRequestHandler (param,"/myfunctions",this,getActivity ());
+        }
+    }
+
+    void sendMyFunctionRequest(String query){
+        if(Session.isSomeOneLoggedIn (getActivity ())){
+            progressBar.setVisibility (View.VISIBLE);
+            HashMap<String,String> param = new HashMap<String,String> ();
+            param.put ("token",Session.getToken (getActivity ()));
+            new PostRequestHandler (param,"/myfunctions/"+query,this,getActivity ());
         }
     }
 

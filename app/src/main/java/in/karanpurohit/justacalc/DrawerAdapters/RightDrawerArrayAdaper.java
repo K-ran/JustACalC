@@ -71,7 +71,6 @@ public class RightDrawerArrayAdaper extends ArrayAdapter<Function> {
             tvVotes.setOnClickListener (new View.OnClickListener () {
                 @Override
                 public void onClick (View v) {
-
                     HashMap<String, String> para = new HashMap<String, String> ();
                     para.put ("token", Session.getToken (getContext ()));
                     new PostRequestHandler (para, "/like/" + getItem (position).getId (), new PostRequestHandler.ResponseHandler () {
@@ -91,7 +90,6 @@ public class RightDrawerArrayAdaper extends ArrayAdapter<Function> {
                                 e.printStackTrace ();
                             }
                         }
-
                         @Override
                         public void onFailure (int status) {
 
