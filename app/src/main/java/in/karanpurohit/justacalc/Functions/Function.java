@@ -18,6 +18,7 @@ public class Function implements Parcelable{
     private String defenation;
     private String description;
     private int userId;
+
     private int publish;
 
     private int votes;
@@ -51,6 +52,7 @@ public class Function implements Parcelable{
         this.votes = votes;
     }
 
+
     public Function (Parcel in) {
         String[] data=new String[6];
         in.readStringArray (data);
@@ -83,6 +85,11 @@ public class Function implements Parcelable{
     public int getUserId () {
 
         return userId;
+    }
+
+    public int getPublish () {
+
+        return publish;
     }
 
     public String getDescription () {
