@@ -32,8 +32,12 @@ import in.karanpurohit.justacalc.R;
  * Created by Karan Purohit on 5/7/16.
  */
 public class MyFunctionsArrayAdapter extends ArrayAdapter<Function> {
-    public MyFunctionsArrayAdapter (Context context, ArrayList<Function> list) {
+
+    MyFunctionsFragment callingFragment;
+
+    public MyFunctionsArrayAdapter (Context context, ArrayList<Function> list,MyFunctionsFragment fragement) {
         super (context,0,list);
+        this.callingFragment = fragement;
     }
 
     public View getView (final int position, View convertView, ViewGroup parent) {
@@ -47,16 +51,21 @@ public class MyFunctionsArrayAdapter extends ArrayAdapter<Function> {
         update = (Button)convertView.findViewById (R.id.btnMyFunctionsUpdateButton);
         delete  = (Button)convertView.findViewById (R.id.btnMyFunctionsDeleteButton);
 
-        update.setTypeface(Typeface.createFromAsset(getContext().getAssets(),getContext().getString(R.string.helveticaNormal)));
-        delete.setTypeface(Typeface.createFromAsset(getContext().getAssets(),getContext().getString(R.string.helveticaNormal)));
+        update.setTypeface (Typeface.createFromAsset (getContext ().getAssets (), getContext ().getString (R.string.helveticaNormal)));
+        delete.setTypeface (Typeface.createFromAsset (getContext ().getAssets (), getContext ().getString (R.string.helveticaNormal)));
 
+        //called when update button is clicked
         update.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
-
+                UpdateMyfunctionDialogFragment fragment = UpdateMyfunctionDialogFragment.newInstance (getItem (position));
+                fragment.setTargetFragment (callingFragment,callingFragment.RequestCode);
+                fragment.show (((MainActivity)getContext ()).getSupportFragmentManager (),"");
             }
         });
 
+
+        //called when delete button clicked
         delete.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
@@ -64,7 +73,6 @@ public class MyFunctionsArrayAdapter extends ArrayAdapter<Function> {
                                                                    "Delete", "Cancle", new CustomAlertBox.CustomDialogClickListner () {
                             @Override
                             public void onPositiveClick () {
-
                                 final ProgressDialog dialog = new ProgressDialog (getContext ());
                                 dialog.setMessage ("Deleting requested function ...");
                                 dialog.show ();
@@ -73,7 +81,6 @@ public class MyFunctionsArrayAdapter extends ArrayAdapter<Function> {
                                 new PostRequestHandler (param, "/delete/"+getItem(position).getId(), new PostRequestHandler.ResponseHandler () {
                                     @Override
                                     public void onSuccess (String string) {
-
                                         dialog.dismiss ();
                                         Toast.makeText (getContext (), "Function Deleted", Toast.LENGTH_SHORT).show ();
                                         remove (getItem (position));

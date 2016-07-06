@@ -1,7 +1,9 @@
 package in.karanpurohit.justacalc.MyFunctions;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -28,6 +30,8 @@ import in.karanpurohit.justacalc.R;
  */
 public class MyFunctionsFragment extends Fragment implements PostRequestHandler.ResponseHandler {
 
+    public static final int RequestCode = 1;
+
     ArrayList<Function> arraylist;
     ListView listView;
     MyFunctionsArrayAdapter adapter;
@@ -44,7 +48,7 @@ public class MyFunctionsFragment extends Fragment implements PostRequestHandler.
         arraylist = new ArrayList<Function> ();
         progressDialog = new ProgressDialog (getContext ());
         progressDialog.setMessage ("Fetching you functions, please wait");
-        adapter = new MyFunctionsArrayAdapter (getContext (),arraylist);
+        adapter = new MyFunctionsArrayAdapter (getContext (),arraylist,this);
         listView = (ListView)view.findViewById (R.id.lvMyFunctions);
         listView.setAdapter (adapter);
         sendMyFunctionRequest ();
@@ -88,4 +92,20 @@ public class MyFunctionsFragment extends Fragment implements PostRequestHandler.
         progressDialog.dismiss ();
         Toast.makeText (getContext (), "Oops, Something went wrong", Toast.LENGTH_SHORT).show ();
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(requestCode) {
+            case RequestCode:
+                if (resultCode == Activity.RESULT_OK) {
+                    int position =  arraylist.indexOf (data.getParcelableExtra ("function"));
+                    arraylist.set(position,(Function)data.getParcelableExtra ("function"));
+                    adapter.notifyDataSetChanged ();
+
+                } else if (resultCode == Activity.RESULT_CANCELED){
+                }
+                break;
+        }
+    }
+
 }

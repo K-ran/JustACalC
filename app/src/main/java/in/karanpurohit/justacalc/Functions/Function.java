@@ -16,9 +16,10 @@ public class Function implements Parcelable{
     private int id;
     private String name;
     private String defenation;
-    private String description;
-    private int userId;
 
+    private String description;
+
+    private int userId;
     private int publish;
 
     private int votes;
@@ -41,7 +42,6 @@ public class Function implements Parcelable{
         return null;
     }
 
-
     public Function (int id,String name, String defenation, int userId, String description, int publish,int votes) {
         this.name = name;
         this.defenation = defenation;
@@ -63,6 +63,7 @@ public class Function implements Parcelable{
         userId=Integer.parseInt (data[4]);
         publish=Integer.parseInt (data[5]);
     }
+
 
     public String getName () {
 
@@ -107,6 +108,11 @@ public class Function implements Parcelable{
         this.defenation = defenation;
     }
 
+    public void setDescription (String description) {
+
+        this.description = description;
+    }
+
     public void setName (String name) {
 
         this.name = name;
@@ -115,6 +121,32 @@ public class Function implements Parcelable{
     public void setPublish (int publish) {
 
         this.publish = publish;
+    }
+
+    public String getParameters(){
+        String def = getDefenation ();
+        int start=-1,end=-1;
+        for(int i=0;i<def.length ();i++){
+            if(def.charAt (i)=='(')
+                start=i;
+            if(def.charAt (i)==')') {
+                end = i;
+                break;
+            }
+        }
+        return def.substring (start+1,end);
+    }
+
+    public String getFunctionBody(){
+        String def = getDefenation ();
+        int start=-1;
+        for(int i=0;i<def.length ();i++){
+            if(def.charAt (i)=='{') {
+                start = i;
+                break;
+            }
+        }
+        return def.substring (start+1,def.length ()-1);
     }
 
     @Override

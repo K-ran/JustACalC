@@ -1,0 +1,104 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                tools:context="in.karanpurohit.justacalc.Create.CreateFragment">
+    <ScrollView
+        android:id="@+id/svUpdateFragment"
+        android:layout_width="match_parent"
+        android:paddingBottom="25dp"
+        android:layout_marginBottom="4dp"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
+                style="@style/labelStyle"
+                android:gravity="center"
+                android:text="Update Function"
+                android:id="@+id/tvUpdateHeading"
+                android:textSize="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:text="echo "
+                android:inputType="none"
+                android:id="@+id/etUpdateFunctionName"
+                style="@style/inputBox.form"
+                android:hint="Function Name Eg. RectArea"
+                android:layout_below="@id/tvUpdateHeading"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:text="inp"
+                android:inputType="none"
+                android:id="@+id/etUpdateFunctionParameters"
+                style="@style/inputBox.form"
+                android:hint="Parameters Eg. height,width"
+                android:layout_below="@id/etUpdateFunctionName"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:text="return inp*inp;"
+                android:inputType="none"
+                style="@style/inputBox"
+                android:id="@+id/etUpdateFunctionDefination"
+                android:hint="Defination Eg: \nreturn height*width;"
+                android:layout_margin="@dimen/activity_vertical_margin"
+                android:padding="20dp"
+                android:gravity="top"
+                android:layout_below="@id/etUpdateFunctionParameters"
+                android:layout_width="match_parent"
+                android:minHeight="200dp"
+                android:layout_height="match_parent"/>
+            <EditText
+                android:text="Description;"
+                android:inputType="none"
+                style="@style/inputBox"
+                android:id="@+id/etUpdateFunctionDescription"
+                android:hint="Defination Eg: \nreturn height*width;"
+                android:layout_margin="@dimen/activity_vertical_margin"
+                android:padding="20dp"
+                android:gravity="top"
+                android:layout_below="@id/etUpdateFunctionDefination"
+                android:layout_width="match_parent"
+                android:minHeight="200dp"
+                android:layout_height="match_parent"/>
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:id="@+id/llUpdateFragmentFooter"
+        android:layout_alignParentBottom="true"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btnCancleUpdateFunction"
+            style="@style/rightDrawerButtonStyle"
+            android:text="Cancle"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btnUpdateUpdateFunction"
+            style="@style/rightDrawerButtonStyle"
+            android:text="Update"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <View
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/colorPrimary"
+        android:layout_above="@id/llUpdateFragmentFooter"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"></View>
+</RelativeLayout>
