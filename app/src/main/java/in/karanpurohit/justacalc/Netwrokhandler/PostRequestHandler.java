@@ -17,7 +17,7 @@ import java.util.Map;
  * Created by ankita on 23/6/16.
  */
 public class PostRequestHandler implements Response.ErrorListener, Response.Listener<String>{
-    public static final String URL = "http://www.karanpurohit.in/api";
+    public static final String URL = "https://www.karanpurohit.in/api";
     ResponseHandler responseHandler;
     public PostRequestHandler (final Map<String,String> params,String route,ResponseHandler responseHandler,Context context) {
         this.responseHandler = responseHandler;

@@ -14,7 +14,7 @@ import com.android.volley.toolbox.Volley;
  * Created by Karan Purohit on 27/6/16.
  */
 public class GetRequestHandler implements Response.ErrorListener, Response.Listener<String>{
-    public static final String URL = "http://www.karanpurohit.in/api";
+    public static final String URL = "https://www.karanpurohit.in/api";
     ResponseHandler responseHandler;
     public GetRequestHandler (String route,ResponseHandler responseHandler,Context context) {
         this.responseHandler = responseHandler;
