@@ -191,6 +191,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                             }
                         break;
                     case R.id.rgbItem2:
+                        tvEmptyListItemView.setText ("Search functions by typing its name in the search box");
                         if(etSearchBox.getText ().toString ().length () >= 1)
                             sendGlobalFunctionRequest (etSearchBox.getText ().toString ());
                         break;
@@ -232,7 +233,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                             sendGlobalFunctionRequest (query);
                         }
                         else{
-                            tvEmptyListItemView.setText ("Search functions by typing their name in the search box");
+                            tvEmptyListItemView.setText ("Search functions by typing its name in the search box");
                             adapter.clear ();
                             adapter.notifyDataSetChanged ();
                         }
