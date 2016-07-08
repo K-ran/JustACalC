@@ -38,24 +38,24 @@
             android:layout_height="match_parent">
             <EditText
                 android:layout_marginTop="50dp"
-                style="@style/inputBox.form"
+                style="@style/inputBox"
                 android:hint="Name"
                 android:id="@+id/etsignupName"
                 />
             <EditText
                 android:layout_below="@id/etsignupName"
-                style="@style/inputBox.form"
+                style="@style/inputBox"
                 android:hint="Email"
                 android:id="@+id/etsignupEmail"
                 />
             <EditText
-                style="@style/inputBox.form"
+                style="@style/inputBox"
                 android:hint="Password"
                 android:layout_below="@id/etsignupEmail"
                 android:id="@+id/etSigupPassword"
                 />
             <EditText
-                style="@style/inputBox.form"
+                style="@style/inputBox"
                 android:hint="Confirm Password"
                 android:layout_below="@id/etSigupPassword"
                 android:id="@+id/etSigupCnfPassword"

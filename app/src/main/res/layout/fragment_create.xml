@@ -9,14 +9,28 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            style="@style/labelStyle"
-            android:gravity="center"
-            android:text="New Function"
+        <LinearLayout
+
+            android:gravity="bottom|center_horizontal"
+            android:orientation="vertical"
             android:id="@+id/tvCreateHeading"
-            android:textSize="24dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:layout_height="160dp">
+            <ImageView
+                android:src="@drawable/plus"
+                android:layout_width="80dp"
+                android:layout_height="80dp"/>
+            <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+                style="@style/labelStyle"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="Create Function"
+                android:textSize="34dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
         <!--<TextView-->
             <!--android:layout_below="@id/tvCreateHeading"-->
             <!--style="@style/labelStyle"-->
@@ -24,33 +38,32 @@
             <!--android:id="@+id/tvFunctionName"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"/>-->
-        <EditText
-            android:text="echo "
+        <in.karanpurohit.justacalc.CustomViews.EditTextHelveticaNormal
+            android:gravity="center"
             android:inputType="none"
             android:id="@+id/etFunctionName"
-            style="@style/inputBox.form"
+            style="@style/inputBox"
             android:hint="Function Name Eg. RectArea"
             android:layout_below="@id/tvCreateHeading"
             android:layout_width="match_parent"
             android:maxLines="1"
             android:layout_height="wrap_content"/>
-        <EditText
-            android:text="inp"
+        <in.karanpurohit.justacalc.CustomViews.EditTextHelveticaNormal
+            android:gravity="center"
             android:inputType="none"
             android:id="@+id/etFunctionParameters"
-            style="@style/inputBox.form"
+            style="@style/inputBox"
             android:hint="Parameters Eg. height,width"
             android:layout_below="@id/etFunctionName"
             android:layout_width="match_parent"
             android:maxLines="1"
             android:layout_height="wrap_content"/>
-        <EditText
-            android:text="return inp*inp;"
+        <in.karanpurohit.justacalc.CustomViews.EditTextHelveticaNormal
             android:inputType="none"
             style="@style/inputBox"
             android:id="@+id/etFunctionDefination"
             android:hint="Defination Eg: \nreturn height*width;"
-            android:layout_margin="@dimen/activity_vertical_margin"
+
             android:padding="20dp"
             android:gravity="top"
             android:layout_below="@id/etFunctionParameters"
@@ -60,10 +73,10 @@
         <Button
             android:id="@+id/btnCreaterFunctionNext"
             android:layout_below="@id/etFunctionDefination"
-            android:layout_margin="10dp"
             style="@style/buttonStyle"
             android:text="Next"
-            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
     </ScrollView>
