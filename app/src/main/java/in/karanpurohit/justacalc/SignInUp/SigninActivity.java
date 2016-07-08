@@ -10,13 +10,13 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import in.karanpurohit.justacalc.CustomViews.MyToast;
 import in.karanpurohit.justacalc.Netwrokhandler.PostRequestHandler;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
@@ -86,7 +86,7 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
         try {
            userData = new JSONObject (string);
            String name =  userData.getString ("name");
-            Toast.makeText (SigninActivity.this, "Welcome "+ name, Toast.LENGTH_SHORT).show ();
+            MyToast.CREATE (getApplicationContext (),"Welcome "+ name,MyToast.SUCCESS).show ();
             userData.put ("email", etEmail.getText ().toString ().trim ());
             Session.createNewSession (userData, this);
             Intent returnIntent = new Intent ();
@@ -102,10 +102,9 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
     public void onFailure (int status) {
         progress.dismiss ();
         if(status==406)
-            Toast.makeText (SigninActivity.this, "Incorrect Crendentials", Toast.LENGTH_SHORT).show ();
+            MyToast.CREATE (getApplicationContext (), "Incorrect Credentials", MyToast.FAIL).show ();
         else
-            Toast.makeText (SigninActivity.this, "Oops, something went wrong "+status , Toast.LENGTH_SHORT).show ();
-        Log.d ("Coool", "At least error is working ;)");
+            MyToast.CREATE (getApplicationContext (), "Something went wrong", MyToast.FAIL).show ();
     }
 }
 

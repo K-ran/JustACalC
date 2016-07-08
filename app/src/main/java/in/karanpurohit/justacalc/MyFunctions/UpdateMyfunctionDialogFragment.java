@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import in.karanpurohit.justacalc.CustomViews.MyToast;
 import in.karanpurohit.justacalc.Functions.Function;
 import in.karanpurohit.justacalc.Netwrokhandler.PostRequestHandler;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
@@ -95,7 +96,7 @@ public class UpdateMyfunctionDialogFragment extends DialogFragment{
                         try {
                             JSONObject obj = new JSONObject (string);
                             if(obj.getString ("message").equals ("success")){
-                                Toast.makeText (getContext (), "Updated Successfully !", Toast.LENGTH_LONG).show ();
+                                MyToast.CREATE (getContext (), "Updated!", MyToast.SUCCESS).show ();
                                 Intent  intent= new Intent ();
                                 function.setName (name.getText ().toString ().trim ());
                                 function.setDefenation (compeleteDefination);
@@ -104,7 +105,7 @@ public class UpdateMyfunctionDialogFragment extends DialogFragment{
                                 getTargetFragment ().onActivityResult (MyFunctionsFragment.RequestCode, Activity.RESULT_OK,intent);
                             }
                             else{
-                                Toast.makeText (getContext (), "Something went wrong !", Toast.LENGTH_LONG).show ();
+                                MyToast.CREATE (getContext (), "Something went wrong", MyToast.FAIL).show ();
                                 getTargetFragment ().onActivityResult (MyFunctionsFragment.RequestCode, Activity.RESULT_CANCELED,null);
                             }
                         }

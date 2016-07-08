@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import in.karanpurohit.justacalc.CustomAlertBox.CustomAlertBox;
+import in.karanpurohit.justacalc.CustomViews.MyToast;
 import in.karanpurohit.justacalc.Functions.Function;
 import in.karanpurohit.justacalc.Netwrokhandler.PostRequestHandler;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
@@ -67,6 +68,7 @@ public class MyFunctionsFragment extends Fragment implements PostRequestHandler.
 
     @Override
     public void onSuccess (String string) {
+        MyToast.CREATE (getContext (), "Done", MyToast.SUCCESS).show ();
         progressDialog.dismiss ();
         adapter.clear();
         adapter.notifyDataSetChanged ();
@@ -90,7 +92,8 @@ public class MyFunctionsFragment extends Fragment implements PostRequestHandler.
     @Override
     public void onFailure (int status) {
         progressDialog.dismiss ();
-        Toast.makeText (getContext (), "Oops, Something went wrong", Toast.LENGTH_SHORT).show ();
+        MyToast.CREATE (getContext (), "SomeThing went Wrong", MyToast.FAIL).show ();
+
     }
 
     @Override

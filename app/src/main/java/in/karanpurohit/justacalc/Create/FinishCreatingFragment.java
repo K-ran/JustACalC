@@ -16,6 +16,7 @@ import java.util.HashMap;
 
 import in.karanpurohit.justacalc.Calculater.CalculaterFragment;
 import in.karanpurohit.justacalc.Calculater.MainActivity;
+import in.karanpurohit.justacalc.CustomViews.MyToast;
 import in.karanpurohit.justacalc.Netwrokhandler.PostRequestHandler;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
@@ -61,14 +62,15 @@ public class FinishCreatingFragment extends Fragment implements PostRequestHandl
     @Override
     public void onSuccess (String string) {
         progress.dismiss();
-        Toast.makeText (getActivity (), "Successfully created function", Toast.LENGTH_LONG).show ();
+        MyToast.CREATE (getContext (), "Function Created!", MyToast.SUCCESS).show ();
         ((MainActivity)getActivity ()).popFronBackState ();
     }
 
     @Override
     public void onFailure (int status) {
         progress.dismiss();
-        Toast.makeText (getActivity (), "Oops, Something went wrong", Toast.LENGTH_SHORT).show ();
+        MyToast.CREATE (getContext (), "Something went wrong", MyToast.FAIL).show ();
+
     }
 
 

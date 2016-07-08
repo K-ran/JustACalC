@@ -23,6 +23,7 @@ import java.util.HashMap;
 
 import in.karanpurohit.justacalc.Calculater.MainActivity;
 import in.karanpurohit.justacalc.CustomAlertBox.CustomAlertBox;
+import in.karanpurohit.justacalc.CustomViews.MyToast;
 import in.karanpurohit.justacalc.Functions.Function;
 import in.karanpurohit.justacalc.Netwrokhandler.PostRequestHandler;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
@@ -82,7 +83,8 @@ public class MyFunctionsArrayAdapter extends ArrayAdapter<Function> {
                                     @Override
                                     public void onSuccess (String string) {
                                         dialog.dismiss ();
-                                        Toast.makeText (getContext (), "Function Deleted", Toast.LENGTH_SHORT).show ();
+                                        MyToast.CREATE (getContext (), "Deleted", MyToast.SUCCESS).show ();
+
                                         remove (getItem (position));
                                         notifyDataSetChanged ();
                                     }
@@ -90,7 +92,8 @@ public class MyFunctionsArrayAdapter extends ArrayAdapter<Function> {
                                     @Override
                                     public void onFailure (int status) {
                                         dialog.dismiss ();
-                                        Toast.makeText (getContext (), "Something went wrong", Toast.LENGTH_SHORT).show ();
+                                        MyToast.CREATE (getContext (), "Something went wrong", MyToast.FAIL).show ();
+
                                     }
                                 }, getContext ());
                             }
@@ -135,7 +138,7 @@ public class MyFunctionsArrayAdapter extends ArrayAdapter<Function> {
                     @Override
                     public void onFailure (int status) {
                         publish.toggle ();
-                        Toast.makeText (getContext (), "Something went wrong", Toast.LENGTH_SHORT).show ();
+                        MyToast.CREATE (getContext (), "Something went wrong", MyToast.FAIL).show ();
                     }
                 }, getContext ());
             }
