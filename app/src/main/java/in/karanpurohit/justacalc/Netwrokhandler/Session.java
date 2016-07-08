@@ -59,4 +59,13 @@ public class Session {
         return null;
     }
 
+    public static String getEmail(Context context){
+
+        if(isSomeOneLoggedIn (context)){
+            SharedPreferences userDetails = context.getSharedPreferences (CONSTANTS.USER_DETAILS, context.MODE_PRIVATE);
+            return userDetails.getString (CONSTANTS.EMAIL, null);
+        }
+        return null;
+    }
+
 }

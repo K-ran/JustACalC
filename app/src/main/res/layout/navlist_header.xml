@@ -3,39 +3,35 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/header"
     android:layout_width="match_parent"
-    android:layout_height="150dp">
+    android:paddingBottom="20dp"
+    android:layout_height="220dp">
     <LinearLayout
-        android:weightSum="100"
+        android:gravity="center"
         android:orientation="vertical"
+        android:id="@+id/llSigninBanner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:background="@color/colorSecondary"
-            android:layout_weight="70"
-            android:orientation="horizontal"
+        android:layout_height="220dp">
+        <ImageView
+            android:src="@drawable/ic_profile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"/>
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            android:id="@+id/tvNavName"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:text="Guest"
+            android:textSize="24dp"
+            android:paddingBottom="0dp"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
-            <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalBold
-                android:padding="10dp"
-                android:layout_gravity="right"
-                android:id="@+id/tvNavName"
-                android:textSize="18dp"
-                android:gravity="bottom|right"
-                android:text="Guest"
-                android:textColor="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_weight="30"
-            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"/>
+        <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+            android:id="@+id/tvNavEmail"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:text=""
+            android:textSize="13dp"
             android:layout_width="match_parent"
-            android:layout_height="0dp"></LinearLayout>
-
+            android:layout_height="wrap_content"/>
     </LinearLayout>
-    <ImageView
-        android:layout_marginTop="50dp"
-        android:src="@drawable/ic_user"
-        android:layout_width="100dp"
-        android:layout_height="match_parent"/>
 </FrameLayout>

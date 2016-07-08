@@ -326,7 +326,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                 Log.d("Cool"," Request Code Okay");
                 String name = Session.getName (getActivity());
                 ((MainActivity)getActivity()).tvNavName.setText(name);
-                ((MainActivity)getActivity()).adapter.update();
+                ((MainActivity)getActivity()).updateList();
             }
             else if(requestCode==MainActivity.RESULT_CANCELED){
                 Log.d("Cool"," Request Code Cancled");

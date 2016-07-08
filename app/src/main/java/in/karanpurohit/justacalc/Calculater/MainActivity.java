@@ -21,11 +21,15 @@ import android.widget.TextView;
 import com.evgenii.jsevaluator.JsEvaluator;
 import com.evgenii.jsevaluator.interfaces.JsCallback;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import in.karanpurohit.justacalc.AboutUs.AboutUsFragment;
 import in.karanpurohit.justacalc.CONSTANTS;
 import in.karanpurohit.justacalc.Create.CreateFragment;
 import in.karanpurohit.justacalc.CustomAlertBox.CustomAlertBox;
 import in.karanpurohit.justacalc.DrawerAdapters.LeftDrawerListAdapter;
+import in.karanpurohit.justacalc.DrawerAdapters.NavDrawerItem;
 import in.karanpurohit.justacalc.MyFunctions.MyFunctionsFragment;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
@@ -37,11 +41,13 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
     FragmentManager fragmentManager ;
     FragmentTransaction fragmentTransaction ;
     JsEvaluator jsEvaluator;
-    TextView tvNavName;
+    TextView tvNavName,tvNavEmail;
     View navListHeader;
     ListView navigationList;
     public LeftDrawerListAdapter adapter;
     DrawerLayout drawerLayout;
+    String[] itemNamesRightDrawer={"Calculater","My Function","Create","Login","About us"};
+   ArrayList<NavDrawerItem> list;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -55,22 +61,27 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                 fragmentTransaction.commit ();
             }
         navListHeader = (View)getLayoutInflater ().inflate (R.layout.navlist_header,null);
-
+        list = new ArrayList<NavDrawerItem> ();
+        adapter = new LeftDrawerListAdapter(this,list);
+        for (int i =0 ; i< itemNamesRightDrawer.length; i++){
+            adapter.add (new NavDrawerItem (itemNamesRightDrawer[i],i==0?true:false));
+        }
+        adapter.notifyDataSetChanged ();
         jsEvaluator = new JsEvaluator (this);
 
         navigationList = (ListView)findViewById (R.id.lvNavigationList);
         navigationList.addHeaderView (navListHeader);
-        adapter = new LeftDrawerListAdapter(this);
         navigationList.setAdapter (adapter);
 
         drawerLayout = (DrawerLayout)findViewById (R.id.drawer_layout);
         tvNavName = (TextView)navListHeader.findViewById (R.id.tvNavName);
-
+        tvNavEmail = (TextView)navListHeader.findViewById (R.id.tvNavEmail);
         //Change user name is user Already logged in
         if(Session.isSomeOneLoggedIn (this)){
             tvNavName.setText (Session.getName (this));
+            tvNavEmail.setText (Session.getEmail(this));
         }
-        adapter.update();
+        updateList ();
         // TODO:  Hiding the soft keyboard if using edittext
         //-----------------
 
@@ -101,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         switch (position) {
             case 1:
                 fragmentTransaction.replace (R.id.content_frame, new CalculaterFragment ());
+                navListUpdateIndicator (1);
                 break;
             case 2:
                 if(!Session.isSomeOneLoggedIn(getApplicationContext())){
@@ -118,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                 }
                 else
                     fragmentTransaction.replace(R.id.content_frame, new MyFunctionsFragment());
+                navListUpdateIndicator (2);
                 break;
             case 3:
                 if(!Session.isSomeOneLoggedIn(getApplicationContext())){
@@ -145,11 +158,14 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                 else {
                     Session.destroySession (getApplicationContext ());
                     tvNavName.setText ("Guest");
-                    adapter.update ();
+                    tvNavEmail.setText ("");
+                    updateList();
                 }
+                navListUpdateIndicator (4);
                 break;
             case 5:
                 fragmentTransaction.replace(R.id.content_frame, new AboutUsFragment());
+                navListUpdateIndicator (5);
                 break;
 
         }
@@ -255,7 +271,8 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         jsEvaluator.evaluate (expression, new JsCallback () {
             @Override
             public void onResult (final String result) {
-                    CalculaterFragment.tvResult.setText (result);
+
+                CalculaterFragment.tvResult.setText (result);
             }
         });
     }
@@ -269,14 +286,41 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
         if(requestCode==SIGNIN_REQUEST_CODE)
             if(resultCode==RESULT_OK){
-                adapter.update();
-                Log.d("cool"," Request Code Okay");
+                updateList ();
+                Log.d ("cool", " Request Code Okay");
                 String name = Session.getName (this);
                 tvNavName.setText (name);
+                tvNavEmail.setText (Session.getEmail (this));
+                updateList();
             }
             else if(requestCode==RESULT_CANCELED){
                 Log.d("cool"," Request Code Cancled");
             }
         super.onActivityResult (requestCode, resultCode, data);
     }
+
+
+    //Update the list if you think their are some changes
+    public void updateList(){
+        Log.d ("cool", "update Called : " + Session.isSomeOneLoggedIn (this));
+        if(Session.isSomeOneLoggedIn(this)){
+            list.set (3, new NavDrawerItem ("Logout", false));
+        }
+        else {
+            list.set (3, new NavDrawerItem ("Login", false));
+        }
+        //TODO: DO this The correct way, this is a juggad
+        navigationList.setAdapter (adapter);
+    }
+
+     void navListUpdateIndicator(int position){
+         position--;
+         for(int i=0;i<list.size ();i++){
+             if(i==position){
+                 list.set (i,new NavDrawerItem (list.get (i).name,true));
+             }
+             else list.set (i,new NavDrawerItem (list.get (i).name,false));
+         }
+         navigationList.setAdapter (adapter);
+     }
 }

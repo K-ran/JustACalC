@@ -32,7 +32,7 @@
             android:layout_centerVertical="true"
             android:id="@+id/chkbxPublic"
             android:layout_alignParentLeft="true"
-            android:text=" Make it publicn\n(Others can use) "
+            android:text=" Make it public\n(Others can use) "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <Button

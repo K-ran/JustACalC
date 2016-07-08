@@ -4,26 +4,24 @@
               android:layout_height="match_parent">
     <LinearLayout
         android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/ivListIcon"
-            android:padding="@dimen/standard_horizontal_margin"
-            android:layout_weight="15"
-            android:layout_width="0dp"
-            android:layout_height="35dp"/>
-            <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
-                android:paddingLeft="30dp"
+        <View
+            android:id="@+id/sideDrawerItemHighlighter"
+            android:layout_width="5dp"
+            android:background="@android:color/transparent"
+            android:layout_height="match_parent"/>
+            <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+                android:paddingLeft="50dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_gravity="center_vertical"
                 textColor="@android:color/black"
                 android:gravity="center|left"
-                android:textSize="18dp"
+                android:textSize="25dp"
                 android:text="test"
                 android:id="@+id/tvItemName"
-                android:layout_weight="85"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
     </LinearLayout>
 </LinearLayout>
