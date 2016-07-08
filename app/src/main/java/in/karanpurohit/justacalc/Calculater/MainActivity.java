@@ -170,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
 
         }
         fragmentTransaction.setTransition (FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.addToBackStack ("");
         fragmentTransaction.commit();
     }
 
