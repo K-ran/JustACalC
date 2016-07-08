@@ -92,7 +92,7 @@ public class MyFunctionsFragment extends Fragment implements PostRequestHandler.
     @Override
     public void onFailure (int status) {
         progressDialog.dismiss ();
-        MyToast.CREATE (getContext (), "SomeThing went Wrong", MyToast.FAIL).show ();
+        MyToast.CREATE (getContext (), "Something went Wrong", MyToast.FAIL).show ();
 
     }
 
