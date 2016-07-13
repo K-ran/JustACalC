@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:padding="10dp"
+              android:minHeight="150dp"
+              android:minWidth="200dp"
               android:layout_width="wrap_content"
               android:background="@drawable/toast_background"
-              android:gravity="center"
-              android:layout_height="wrap_content">
+              android:layout_height="150dp">
     <ImageView
         android:id="@+id/ivToastImage"
         android:src="@drawable/ic_correct"
-        android:layout_width="100dp"
-        android:layout_height="100dp"/>
-    <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true" />
+    <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
         android:id="@+id/tvToastMessage"
-        android:gravity="center"
+        android:layout_below="@id/ivToastImage"
         android:padding="5dp"
         android:text="hello"
-        android:textColor="@android:color/black"
+        android:layout_marginTop="5dp"
         android:textSize="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+         />
 
-</LinearLayout>
+</RelativeLayout>
