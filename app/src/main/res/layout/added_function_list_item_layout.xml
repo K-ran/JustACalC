@@ -28,26 +28,24 @@
                 android:text="Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <View
-                android:background="@color/colorPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"></View>
-            <ScrollView
+            <!--<View-->
+                <!--android:background="@color/colorPrimary"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"></View>-->
+            <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
+                android:id="@+id/tvAddedListFunctionDescription"
+                android:layout_marginTop="5dp"
+                android:text="Description"
+                style="@style/labelStyle"
+                android:minHeight="40dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
-                    android:id="@+id/tvAddedListFunctionDescription"
-                    android:text="Description"
-                    style="@style/labelStyle"
-                    android:maxHeight="250dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </ScrollView>
+                android:layout_height="wrap_content"/>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
+                    android:textSize="15dp"
                     style="@style/rightDrawerButtonStyle"
                     android:textColor="@color/colorAccent"
                     android:id="@+id/btnAddedListUseButton"
@@ -56,6 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <Button
+                    android:textSize="15dp"
                     style="@style/rightDrawerButtonStyle"
                     android:layout_marginLeft="10dp"
                     android:id="@+id/btnAddedListRemoveButton"

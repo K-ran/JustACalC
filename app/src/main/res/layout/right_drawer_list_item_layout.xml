@@ -16,7 +16,7 @@
     <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:orientation="vertical"
-                android:padding="@dimen/standard_vertical_padding"
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
         <RelativeLayout
@@ -24,29 +24,27 @@
             android:layout_height="wrap_content">
             <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalBold
                 android:textStyle="bold"
+                android:textSize="20dp"
                 style="@style/labelStyle"
                 android:id="@+id/tvRightDrawerFunctionName"
                 android:text="Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <View
-                android:id="@+id/line"
-                android:layout_below="@id/tvRightDrawerFunctionName"
-                android:background="@color/colorPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"></View>
+            <!--<View-->
+                <!--android:id="@+id/line"-->
+                <!--android:layout_below="@id/tvRightDrawerFunctionName"-->
+                <!--android:background="@color/colorPrimary"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"></View>-->
         </RelativeLayout>
-            <ScrollView
+            <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
+                android:layout_marginTop="5dp"
+                android:id="@+id/tvRightDrawerFunctionDescription"
+                android:text="Description"
+                style="@style/labelStyle"
+                android:minHeight="40dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
-                    android:id="@+id/tvRightDrawerFunctionDescription"
-                    android:text="Description"
-                    style="@style/labelStyle"
-                    android:maxHeight="250dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </ScrollView>
+                android:layout_height="wrap_content"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp">
@@ -55,6 +53,7 @@
                     android:id="@+id/btnRightDrawerAddButton"
                     style="@style/rightDrawerButtonStyle"
                     android:text="Add"
+                    android:textSize="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

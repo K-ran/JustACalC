@@ -27,14 +27,15 @@
                     style="@style/labelStyle"
                     android:id="@+id/tvMyFunctionsFunctionName"
                     android:text="Name"
+                    android:textSize="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <View
-                    android:id="@+id/line"
-                    android:layout_below="@id/tvMyFunctionsFunctionName"
-                    android:background="@color/colorPrimary"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"></View>
+                <!--<View-->
+                    <!--android:id="@+id/line"-->
+                    <!--android:layout_below="@id/tvMyFunctionsFunctionName"-->
+                    <!--android:background="@color/colorPrimary"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"></View>-->
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -48,18 +49,19 @@
 
             </RelativeLayout>
 
-            <ScrollView
+            <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/tvMyFunctionsFunctionDescription"
+                android:text="Description"
+                style="@style/labelStyle"
+                android:minHeight="50dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
-                    android:id="@+id/tvMyFunctionsFunctionDescription"
-                    android:text="Description"
-                    style="@style/labelStyle"
-                    android:maxHeight="250dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </ScrollView>
+                android:layout_height="wrap_content"/>
+
             <RelativeLayout
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="40dp">
                 <Button

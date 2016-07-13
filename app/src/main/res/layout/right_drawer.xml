@@ -18,7 +18,7 @@
             android:background="@android:color/transparent"
             android:id="@+id/etSearchbox"
             android:gravity="center"
-            android:hint="Search function by name"
+            android:hint="Search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </EditText>
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:orientation="horizontal">
         <RadioButton
-            android:textSize="15dp"
+            android:textSize="17dp"
             android:padding="2dp"
             android:button="@android:color/transparent"
             android:id="@+id/rgbItem1"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"/>
         <RadioButton
             android:padding="2dp"
-            android:textSize="15dp"
+            android:textSize="17dp"
             android:button="@android:color/transparent"
             android:id="@+id/rgbItem2"
             android:text="Global database"
