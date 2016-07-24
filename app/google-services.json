@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "964961685621",
+    "project_id": "firebase-justacalc"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964961685621:android:3c18ab20a462a946",
+        "android_client_info": {
+          "package_name": "in.karanpurohit.justacalc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964961685621-gbqangieda1vue0mpl40np80jgqrshr4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.karanpurohit.justacalc",
+            "certificate_hash": "5C631091C92A5E77996AFC50B8A32F0F67B86D8C"
+          }
+        },
+        {
+          "client_id": "964961685621-bva5au3gngjfm9vg692p8dkss0jrjctc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk1KC5Xaj0pJsE7pwv2cGcwwNK8Qj2v7s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
