@@ -28,10 +28,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
+        <com.google.android.gms.common.SignInButton
+            android:layout_centerInParent="true"
+            android:layout_below="@id/llSigninBanner"
+            android:id="@+id/google_sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <in.karanpurohit.justacalc.CustomViews.EditTextHelveticaNormal
             android:inputType="textEmailAddress"
-            android:layout_below="@id/llSigninBanner"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/google_sign_in_button"
             style="@style/inputBox"
             android:hint="Email"
             android:gravity="center"

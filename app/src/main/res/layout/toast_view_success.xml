@@ -17,6 +17,7 @@
     <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
         android:id="@+id/tvToastMessage"
         android:layout_below="@id/ivToastImage"
+        android:textColor="@android:color/darker_gray"
         android:padding="5dp"
         android:text="hello"
         android:layout_marginTop="5dp"
