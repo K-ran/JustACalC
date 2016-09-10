@@ -64,6 +64,7 @@
             android:layout_height="wrap_content"/>
         <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalNormal
             android:layout_marginTop="15dp"
+            android:id="@+id/tvSignupLink"
             android:text="Don't have an account, Sign up here!"
             android:layout_below="@id/btnActualSignin"
             android:layout_centerHorizontal="true"

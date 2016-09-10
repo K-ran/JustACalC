@@ -2,6 +2,7 @@ package in.karanpurohit.justacalc.SignInUp;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -23,6 +23,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,35 +39,41 @@ import in.karanpurohit.justacalc.R;
 
 public class SigninActivity extends AppCompatActivity implements PostRequestHandler.ResponseHandler, GoogleApiClient.OnConnectionFailedListener {
 
+    public static int SIGN_UP_REQUEST_CODE=0;
     Button signin;
     EditText etEmail,etPassword;
     ProgressDialog progress;
     JSONObject userData;
+//<<<<<<< HEAD
     GoogleApiClient mGoogleApiClient;
     GoogleSignInOptions gso;
     public static int RC_GOOGLE_SIGN_IN=3;
+//=======
+    TextView signupLink;
+//>>>>>>> f0f2003008ff252785e70736f4e7578491a670c8
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_signin);
+        setContentView(R.layout.activity_signin);
         signin = (Button)findViewById (R.id.btnActualSignin);
         etEmail = ((EditText)findViewById (R.id.etSigninEmail));
         etPassword = ((EditText)findViewById (R.id.etSiginPassword));
         progress = new ProgressDialog(this);
         progress.setMessage ("Signing You in ..");
-
+        signupLink = (TextView)findViewById(R.id.tvSignupLink);
         etEmail.setImeActionLabel ("", EditorInfo.IME_ACTION_NEXT);
 
-        signin.setOnClickListener (new View.OnClickListener () {
+        signin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View v) {
-                if(!(isEmailValid ()&&isPasswordValid ()))
+            public void onClick(View v) {
+                if (!(isEmailValid() && isPasswordValid()))
                     return;
                 //TODO: Start the login process
-                progress.show ();
+                progress.show();
                 sendRequest();
             }
         });
+//<<<<<<< HEAD
 
         //Adding google login
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -100,6 +107,15 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
     private void signIn(){
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent,RC_GOOGLE_SIGN_IN);
+//=======
+        signupLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),SignupActivity.class);
+                startActivityForResult(intent, SIGN_UP_REQUEST_CODE);
+            }
+        });
+//>>>>>>> f0f2003008ff252785e70736f4e7578491a670c8
     }
 
     boolean isEmailValid(){
@@ -115,7 +131,7 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
         String password = etPassword.getText ().toString ();
         if(!password.matches ("[A-Za-z0-9]+")){
             if(password.equals (""))
-                etEmail.setError ("Required field");
+                etPassword.setError ("Required field");
             else
                 etPassword.setError ("Password should be alpha numeric value");
             return false;
@@ -159,6 +175,7 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
     }
 
     @Override
+//<<<<<<< HEAD
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
@@ -244,6 +261,13 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
         });
         mGoogleApiClient.connect();
     }
+//=======
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {;
+//        if(resultCode == RESULT_OK && requestCode==SIGN_UP_REQUEST_CODE) {
+//            MyToast.CREATE(this,"Account created, please ligin",MyToast.SUCCESS).show();
+//        }
+//    }
+//>>>>>>> f0f2003008ff252785e70736f4e7578491a670c8
 }
 
 
