@@ -44,13 +44,10 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
     EditText etEmail,etPassword;
     ProgressDialog progress;
     JSONObject userData;
-//<<<<<<< HEAD
     GoogleApiClient mGoogleApiClient;
     GoogleSignInOptions gso;
     public static int RC_GOOGLE_SIGN_IN=3;
-//=======
     TextView signupLink;
-//>>>>>>> f0f2003008ff252785e70736f4e7578491a670c8
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -73,8 +70,6 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
                 sendRequest();
             }
         });
-//<<<<<<< HEAD
-
         //Adding google login
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.server_client_id))
@@ -102,12 +97,7 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
 
             }
         });
-    }
 
-    private void signIn(){
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent,RC_GOOGLE_SIGN_IN);
-//=======
         signupLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +105,11 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
                 startActivityForResult(intent, SIGN_UP_REQUEST_CODE);
             }
         });
-//>>>>>>> f0f2003008ff252785e70736f4e7578491a670c8
+    }
+
+    private void signIn(){
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent,RC_GOOGLE_SIGN_IN);
     }
 
     boolean isEmailValid(){
@@ -175,7 +169,6 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
     }
 
     @Override
-//<<<<<<< HEAD
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
@@ -261,13 +254,6 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
         });
         mGoogleApiClient.connect();
     }
-//=======
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {;
-//        if(resultCode == RESULT_OK && requestCode==SIGN_UP_REQUEST_CODE) {
-//            MyToast.CREATE(this,"Account created, please ligin",MyToast.SUCCESS).show();
-//        }
-//    }
-//>>>>>>> f0f2003008ff252785e70736f4e7578491a670c8
 }
 
 
