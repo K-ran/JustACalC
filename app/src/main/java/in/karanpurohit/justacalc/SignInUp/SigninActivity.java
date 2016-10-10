@@ -180,6 +180,7 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
         if (requestCode == RC_GOOGLE_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
+            Log.d("Sigh in"," Done");
         }
     }
     private void handleSignInResult(GoogleSignInResult result) {

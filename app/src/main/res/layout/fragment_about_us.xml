@@ -1,13 +1,32 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+                android:background="@color/white"
              tools:context="in.karanpurohit.justacalc.AboutUs.AboutUsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="About us"/>
-
-</FrameLayout>
+    <ImageView
+        android:layout_centerInParent="true"
+        android:id="@+id/ivAboutUSAppLogo"
+        android:src="@drawable/ic_app_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+    <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+        android:layout_below="@id/ivAboutUSAppLogo"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tvAboutUSDeveloperName"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Developed by Karan Purohit"/>
+    <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvAboutUSDeveloperName"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Designed by Srajal Mandwal"/>
+</RelativeLayout>

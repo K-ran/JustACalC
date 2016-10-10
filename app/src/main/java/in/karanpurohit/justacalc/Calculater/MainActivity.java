@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
     ListView navigationList;
     public LeftDrawerListAdapter adapter;
     DrawerLayout drawerLayout;
-    String[] itemNamesRightDrawer={"Calculater","My Function","Create","Login","About us"};
+    String[] itemNamesRightDrawer={"Calculator","My Function","Create","Login","About us"};
    ArrayList<NavDrawerItem> list;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         updateList ();
         // TODO:  Hiding the soft keyboard if using edittext
         //-----------------
-
 
         //Handling navigation drawer click listener
         //This is handles fragment changes and nav drawer closee function

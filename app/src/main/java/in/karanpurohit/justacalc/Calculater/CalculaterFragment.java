@@ -1,6 +1,7 @@
 package in.karanpurohit.justacalc.Calculater;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -9,6 +10,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -52,6 +55,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
     TextView tvEmptyListItemView;
     ArrayList<Function> rightDrawerListArray;
     RightDrawerArrayAdaper adapter;
+    DrawerLayout rightDrawerLayout;
     public static TextView tvExpression,tvResult;
     RadioGroup radioGroup;
     RadioButton rb1,rb2; //radio buttons
@@ -89,6 +93,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
         rb1 = (RadioButton)view.findViewById (R.id.rgbItem1);
         rb2 = (RadioButton)view.findViewById (R.id.rgbItem2);
         final Typeface halveticaNormal = Typeface.createFromAsset (getContext ().getAssets (), getContext ().getString (R.string.helveticaNormal));
+        rightDrawerLayout = (DrawerLayout)view.findViewById(R.id.rightDrawer);
         //--------------------------//
 
 
@@ -200,6 +205,31 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
         });
         //--------------------------
 
+        Log.d("cool","Setting Drawer");
+        //Setting up right drawer listeners
+        rightDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                Log.d("cool","Drawer closed");
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(drawerView.getWindowToken(), 0);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+            }
+        });
+        //---------------------------------
+
         //Setting onLong press on delete key
         ((TextView)view.findViewById (R.id.tvKBDel)).setOnLongClickListener (new View.OnLongClickListener () {
             @Override
@@ -271,6 +301,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
     }
 
     void sendMyFunctionRequest(String query){
+        query= query.replace(' ','+');
         if(Session.isSomeOneLoggedIn (getActivity ())){
             progressBar.setVisibility (View.VISIBLE);
             HashMap<String,String> param = new HashMap<String,String> ();
@@ -280,7 +311,8 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
     }
 
     void sendGlobalFunctionRequest(String query){
-        Log.d ("cool", "Get request called");
+        query= query.replace(' ','+');
+        Log.d ("cool", "Get request called with "+ query);
         progressBar.setVisibility (View.VISIBLE);
         new GetRequestHandler ("/functions/"+query,this,getActivity ());
     }

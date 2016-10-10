@@ -2,6 +2,7 @@
 <android.support.v4.widget.DrawerLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rightDrawer"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout
@@ -90,8 +91,8 @@
         </LinearLayout>
     </LinearLayout>
     <!-- Right navigation Drawer-->
+
     <include
-        android:id="@+id/right_drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="end"

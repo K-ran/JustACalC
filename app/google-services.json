@@ -17,8 +17,12 @@
           "client_type": 1,
           "android_info": {
             "package_name": "in.karanpurohit.justacalc",
-            "certificate_hash": "5C631091C92A5E77996AFC50B8A32F0F67B86D8C"
+            "certificate_hash": "BADE09D73F61627D954884AD0CFEA15808E051B7"
           }
+        },
+        {
+          "client_id": "964961685621-jduuq2eu6m1c1jjq5mr3q3gaar84odjh.apps.googleusercontent.com",
+          "client_type": 3
         },
         {
           "client_id": "964961685621-bva5au3gngjfm9vg692p8dkss0jrjctc.apps.googleusercontent.com",
