@@ -2,11 +2,13 @@ package in.karanpurohit.justacalc.Create;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -52,6 +54,11 @@ public class FinishCreatingFragment extends Fragment implements PostRequestHandl
         finish.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
+
+                if(description.getText().toString().trim().equals("")){
+                    description.setError("Can't be left empty");
+                    return;
+                }
                 progress.show();
                 myOnClick(v);
             }
@@ -64,6 +71,8 @@ public class FinishCreatingFragment extends Fragment implements PostRequestHandl
         progress.dismiss();
         MyToast.CREATE (getContext (), "Function Created!", MyToast.SUCCESS).show ();
         ((MainActivity)getActivity ()).popFronBackState ();
+        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
     }
 
     @Override

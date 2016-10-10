@@ -43,6 +43,9 @@ import in.karanpurohit.justacalc.Netwrokhandler.PostRequestHandler;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
 import in.karanpurohit.justacalc.SignInUp.SigninActivity;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 public class CalculaterFragment extends Fragment implements PostRequestHandler.ResponseHandler, GetRequestHandler.ResponseHandler {
 
@@ -207,7 +210,6 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
         });
         //--------------------------
 
-        Log.d("cool","Setting Drawer");
         //Setting up right drawer listeners
         rightDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -230,6 +232,16 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
             public void onDrawerStateChanged(int newState) {
             }
         });
+        //---------------------------------
+
+        //Long press result text view------
+         tvResult.setOnLongClickListener(new View.OnLongClickListener() {
+             @Override
+             public boolean onLongClick(View v) {
+                 tvExpression.setText(tvResult.getText());
+                 return true;
+             }
+         });
         //---------------------------------
 
         //Setting onLong press on delete key
@@ -289,6 +301,25 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
         tvEmptyListItemView.setText ("Search functions by typing their name in the search box");
         rightDrawerListView.setEmptyView(tvEmptyListItemView);
         //--------------------
+
+        //Setting up Guide---------
+//        new MaterialShowcaseView.Builder(getActivity())
+//                .setTarget(new View(getContext()))
+//                .setDismissText("GOT IT")
+//                .setContentText("\n\nSwipe from Right to search functions")
+//                .setDelay(200) // optional but starting animations immediately in onCreate can make them choppy
+//                .show();
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(250);
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(getActivity(),"calculaterGuide");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(new View(getContext()),
+                "\n\n\nSwipe from left to Open Navigation Drawer", "GOT IT");
+        sequence.addSequenceItem(new View(getContext()),
+                "\n\n\nSwipe from right to search functions", "GOT IT");
+        sequence.addSequenceItem(view.findViewById(R.id.vpSwipeKeyboard),
+                "Swipe from right to access scientific functions or left to access added functions list", "GOT IT");
+        sequence.start();
         return view;
     }
 

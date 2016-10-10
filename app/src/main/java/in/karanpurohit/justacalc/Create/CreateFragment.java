@@ -13,6 +13,11 @@ import android.widget.EditText;
 import in.karanpurohit.justacalc.Calculater.MainActivity;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+import uk.co.deanwild.materialshowcaseview.shape.CircleShape;
+import uk.co.deanwild.materialshowcaseview.shape.RectangleShape;
+import uk.co.deanwild.materialshowcaseview.shape.Shape;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,9 +43,22 @@ public class CreateFragment extends Fragment {
         next.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick (View v) {
+                boolean error =false;
                 String compeleteDefination = "function "+name.getText ().toString ().trim ()
                                             +"("+parameter.getText ().toString ().trim ()+"){"
                                             +defination.getText ().toString ().trim ()+"}";
+
+                if(name.getText ().toString ().trim ().equals("")){
+                    name.setError("Can't be left empty");
+                    error=true;
+                }
+                if(defination.getText ().toString ().trim ().equals("")){
+                    defination.setError("Can't be left empty");
+                    error=true;
+                }
+                if(error)
+                    return;
+
                 Bundle bundle = new Bundle ();
                 bundle.putString ("name",name.getText ().toString ().trim ());
                 bundle.putString ("defination",compeleteDefination);
@@ -48,6 +66,20 @@ public class CreateFragment extends Fragment {
             }
 
         });
+
+        //Function creation tutorial
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(250);
+        config.setShape(new CircleShape(20));
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(getActivity(),"Create function guide");
+        sequence.setConfig(config);
+        sequence.addSequenceItem(name,
+                "Write the name of the function. Should be a single word with no special character except \"_\" and starts with a non-numeric character", "GOT IT");
+        sequence.addSequenceItem(parameter,
+                "Parameter list seperated with comma. Can be left empty", "GOT IT");
+        sequence.addSequenceItem(defination,
+                "Defination of the functions should be in Javascript. No need to put initial function brackets", "GOT IT");
+        sequence.start();
         return view;
     }
 

@@ -45,17 +45,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 
 import com.evgenii.jsevaluator.JsEvaluator;
 import com.evgenii.jsevaluator.interfaces.JsCallback;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import in.karanpurohit.justacalc.AboutUs.AboutUsFragment;
 import in.karanpurohit.justacalc.CONSTANTS;
 import in.karanpurohit.justacalc.Create.CreateFragment;
@@ -66,6 +62,7 @@ import in.karanpurohit.justacalc.MyFunctions.MyFunctionsFragment;
 import in.karanpurohit.justacalc.Netwrokhandler.Session;
 import in.karanpurohit.justacalc.R;
 import in.karanpurohit.justacalc.SignInUp.SigninActivity;
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 
 public class MainActivity extends AppCompatActivity implements NormalKeypadFragment.OnFragmentInteractionListener,
                                                                ScientificKeypadFragment.OnFragmentInteractionListener{
