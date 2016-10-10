@@ -58,6 +58,8 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
     DrawerLayout rightDrawerLayout;
     public static TextView tvExpression,tvResult;
     RadioGroup radioGroup;
+    PostRequestHandler postRequestHandler=null;
+    GetRequestHandler getRequestHandler = null;
     RadioButton rb1,rb2; //radio buttons
 
     EditText etSearchBox;
@@ -259,7 +261,7 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                 tvEmptyListItemView.setText ("No results");
                 switch(radioGroup.getCheckedRadioButtonId ()){
                     case R.id.rgbItem2:
-                        if(query.length ()>=1){
+                        if(query.length ()>=2){
                             sendGlobalFunctionRequest (query);
                         }
                         else{
@@ -296,7 +298,10 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
             progressBar.setVisibility (View.VISIBLE);
             HashMap<String,String> param = new HashMap<String,String> ();
             param.put ("token",Session.getToken (getActivity ()));
-            new PostRequestHandler (param,"/myfunctions",this,getActivity ());
+            //Cancel the old requests
+            if(postRequestHandler!=null)
+                postRequestHandler.cancelAllRequests();
+            postRequestHandler = new PostRequestHandler (param,"/myfunctions",this,getActivity ());
         }
     }
 
@@ -306,7 +311,10 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
             progressBar.setVisibility (View.VISIBLE);
             HashMap<String,String> param = new HashMap<String,String> ();
             param.put ("token",Session.getToken (getActivity ()));
-            new PostRequestHandler (param,"/myfunctions/"+query,this,getActivity ());
+            //Cancel the old requests
+            if(postRequestHandler!=null)
+                postRequestHandler.cancelAllRequests();
+            postRequestHandler = new PostRequestHandler (param,"/myfunctions/"+query,this,getActivity ());
         }
     }
 
@@ -314,7 +322,10 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
         query= query.replace(' ','+');
         Log.d ("cool", "Get request called with "+ query);
         progressBar.setVisibility (View.VISIBLE);
-        new GetRequestHandler ("/functions/"+query,this,getActivity ());
+        //Cancel the old requests
+        if(getRequestHandler!=null)
+            getRequestHandler.cancelAllRequests();
+        getRequestHandler = new GetRequestHandler ("/functions/"+query,this,getActivity ());
     }
 
     @Override

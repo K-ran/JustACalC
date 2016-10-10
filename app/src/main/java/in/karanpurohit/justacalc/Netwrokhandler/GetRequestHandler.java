@@ -16,9 +16,10 @@ import com.android.volley.toolbox.Volley;
 public class GetRequestHandler implements Response.ErrorListener, Response.Listener<String>{
     public static final String URL = "https://www.karanpurohit.in/api";
     ResponseHandler responseHandler;
+    RequestQueue queue;
     public GetRequestHandler (String route,ResponseHandler responseHandler,Context context) {
         this.responseHandler = responseHandler;
-        RequestQueue queue = Volley.newRequestQueue (context);
+        queue = Volley.newRequestQueue (context);
         StringRequest myReq = new StringRequest (Request.Method.GET,
                                                  URL+route,
                                                  this,
@@ -29,6 +30,15 @@ public class GetRequestHandler implements Response.ErrorListener, Response.Liste
     public interface ResponseHandler{
         void onSuccess(String string);
         void onFailure(int status);
+    }
+
+    public void cancelAllRequests(){
+        queue.cancelAll(new RequestQueue.RequestFilter() {
+            @Override
+            public boolean apply(Request<?> request) {
+                return true;
+            }
+        });
     }
 
     @Override

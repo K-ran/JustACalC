@@ -19,9 +19,10 @@ import java.util.Map;
 public class PostRequestHandler implements Response.ErrorListener, Response.Listener<String>{
     public static final String URL = "https://www.karanpurohit.in/api";
     ResponseHandler responseHandler;
+    RequestQueue queue;
     public PostRequestHandler (final Map<String,String> params,String route,ResponseHandler responseHandler,Context context) {
         this.responseHandler = responseHandler;
-        RequestQueue queue = Volley.newRequestQueue (context);
+        queue = Volley.newRequestQueue (context);
         StringRequest myReq = new StringRequest (Request.Method.POST,
                                                  URL+route,
                                                  this,
@@ -38,6 +39,15 @@ public class PostRequestHandler implements Response.ErrorListener, Response.List
         void onFailure(int status);
     }
 
+    public void cancelAllRequests(){
+        queue.cancelAll(new RequestQueue.RequestFilter() {
+            @Override
+            public boolean apply(Request<?> request) {
+                return true;
+            }
+        });
+    }
+
     @Override
     public void onErrorResponse (VolleyError error) {
         NetworkResponse networkResponse = error.networkResponse;
@@ -52,4 +62,5 @@ public class PostRequestHandler implements Response.ErrorListener, Response.List
     public void onResponse (String response) {
         responseHandler.onSuccess (response);
     }
+
 }
