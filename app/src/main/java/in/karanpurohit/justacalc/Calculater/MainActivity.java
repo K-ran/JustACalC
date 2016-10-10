@@ -265,11 +265,11 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
             case R.id.tvKBexponent:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.E);break;
             case R.id.tvKBPower:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.POWER);break;
             case R.id.tvKBln:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.LN);break;
-            case R.id.tvKBlog:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.LOG);break;
             case R.id.tvKBSqrt:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.SQRT);break;
             case R.id.tvKBSin:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.SINE);break;
             case R.id.tvKBCos:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.COS);break;
             case R.id.tvKBTan:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.TAN);break;
+            case R.id.tvKBExp:CalculaterFragment.tvExpression.setText (CalculaterFragment.tvExpression.getText ().toString ()+CONSTANTS.EXP);break;
         }
 
         evaluate (CalculaterFragment.tvExpression.getText ().toString ());

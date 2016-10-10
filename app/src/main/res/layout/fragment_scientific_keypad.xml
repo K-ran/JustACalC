@@ -52,11 +52,11 @@
             android:id="@+id/tvKBln"/>
         <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
             style="@style/keypadbuttonstyleScientific"
-            android:text="log"
+            android:text="exp"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/tvKBlog"/>
+            android:id="@+id/tvKBExp"/>
         <in.karanpurohit.justacalc.CustomViews.TextViewHelveticalThin
             style="@style/keypadbuttonstyleScientific"
             android:text="@string/sqrt"

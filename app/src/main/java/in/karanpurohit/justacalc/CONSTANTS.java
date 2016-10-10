@@ -8,12 +8,12 @@ public class CONSTANTS {
     public static final String PI="Math.PI";
     public static final String E="Math.E";
     public static final String POWER="Math.pow(";
-    public static final String LOG="Math.log10(";
     public static final String LN="Math.log(";
     public static final String SINE="Math.sin(";
     public static final String COS="Math.cos(";
     public static final String TAN="Math.tan(";
     public static final String SQRT="Math.sqrt(";
+    public static final String EXP="Math.abs(";
     //----------------------------
 
     //User Credentials
