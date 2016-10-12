@@ -77,6 +77,13 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
     DrawerLayout drawerLayout;
     String[] itemNamesRightDrawer={"Calculator","My Function","Create","Login","About us"};
    ArrayList<NavDrawerItem> list;
+
+    //All fragments refrences---------
+    CalculaterFragment calculaterFragment;
+    CreateFragment createFragment;
+    MyFunctionsFragment myFunctionsFragment;
+    AboutUsFragment aboutUsFragment;
+    //----------------------
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -89,6 +96,15 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                 fragmentTransaction.add (R.id.content_frame,new CalculaterFragment ());
                 fragmentTransaction.commit ();
             }
+
+
+        //Fragments initilization ----
+        calculaterFragment  =new CalculaterFragment();
+        myFunctionsFragment = new MyFunctionsFragment();
+        createFragment = new CreateFragment();
+        aboutUsFragment = new AboutUsFragment();
+        //----------------------------
+
         navListHeader = (View)getLayoutInflater ().inflate (R.layout.navlist_header,null);
         list = new ArrayList<NavDrawerItem> ();
         adapter = new LeftDrawerListAdapter(this,list);
@@ -139,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
         fragmentTransaction = fragmentManager.beginTransaction ();
         switch (position) {
             case 1:
-                fragmentTransaction.replace (R.id.content_frame, new CalculaterFragment ());
+                fragmentTransaction.replace (R.id.content_frame, calculaterFragment);
                 navListUpdateIndicator (1);
                 break;
             case 2:
@@ -157,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                     signInAlert.show(getSupportFragmentManager(),"");
                 }
                 else {
-                    fragmentTransaction.replace(R.id.content_frame, new MyFunctionsFragment());
+                    fragmentTransaction.replace(R.id.content_frame, myFunctionsFragment);
                     navListUpdateIndicator(2);
                 }
                 break;
@@ -176,8 +192,10 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                     });
                     signInAlert.show(getSupportFragmentManager(),"");
                 }
-                else
-                    fragmentTransaction.replace(R.id.content_frame, new CreateFragment());
+                else {
+                    fragmentTransaction.replace(R.id.content_frame, createFragment);
+                    navListUpdateIndicator(3);
+                }
                 break;
             case 4:
                 if (!Session.isSomeOneLoggedIn (getApplicationContext ())) {
@@ -192,10 +210,9 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                     changeFragment(1);
                     return;
                 }
-                navListUpdateIndicator (4);
                 break;
             case 5:
-                fragmentTransaction.replace(R.id.content_frame, new AboutUsFragment());
+                fragmentTransaction.replace(R.id.content_frame, aboutUsFragment);
                 navListUpdateIndicator (5);
                 break;
 
