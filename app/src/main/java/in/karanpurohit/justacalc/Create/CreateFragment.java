@@ -70,7 +70,7 @@ public class CreateFragment extends Fragment {
         //Function creation tutorial
         ShowcaseConfig config = new ShowcaseConfig();
         config.setDelay(250);
-        config.setShape(new CircleShape(20));
+        config.setShape(new RectangleShape(1,1));
         MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(getActivity(),"Create function guide");
         sequence.setConfig(config);
         sequence.addSequenceItem(name,

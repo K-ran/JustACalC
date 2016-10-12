@@ -13,11 +13,13 @@
         <item name="android:background">@drawable/keypadbutton</item>
         <item name="android:gravity">center</item>
         <item name="android:onClick">buttonClicked</item>
+        <item name="android:clickable">true</item>
     </style>
     <style name="keypadbuttonstylefunction" parent="keypadbuttonstyle">
         <item name="android:background">@color/colorAccent</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">30sp</item>
+        <item name="android:clickable">true</item>
     </style>
 
     <style name="keypadbuttonstyleScientific" parent="keypadbuttonstyle">

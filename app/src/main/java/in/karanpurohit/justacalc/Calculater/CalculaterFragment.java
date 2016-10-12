@@ -46,6 +46,7 @@ import in.karanpurohit.justacalc.SignInUp.SigninActivity;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
+import uk.co.deanwild.materialshowcaseview.shape.RectangleShape;
 
 public class CalculaterFragment extends Fragment implements PostRequestHandler.ResponseHandler, GetRequestHandler.ResponseHandler {
 
@@ -310,7 +311,8 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
 //                .setDelay(200) // optional but starting animations immediately in onCreate can make them choppy
 //                .show();
         ShowcaseConfig config = new ShowcaseConfig();
-        config.setDelay(250);
+        config.setDelay(100);
+        config.setShape(new RectangleShape(1,1));
         MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(getActivity(),"calculaterGuide");
         sequence.setConfig(config);
         sequence.addSequenceItem(new View(getContext()),
@@ -319,7 +321,11 @@ public class CalculaterFragment extends Fragment implements PostRequestHandler.R
                 "\n\n\nSwipe from right to search functions", "GOT IT");
         sequence.addSequenceItem(view.findViewById(R.id.vpSwipeKeyboard),
                 "Swipe from right to access scientific functions or left to access added functions list", "GOT IT");
+        sequence.addSequenceItem(view.findViewById(R.id.tvKBDel),"Tap once to delete last character. Long press to clear everything.","GOT IT");
         sequence.start();
+
+        tvExpression.setText(" ");
+
         return view;
     }
 

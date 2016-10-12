@@ -37,6 +37,7 @@ public class MyFunctionsFragment extends Fragment implements PostRequestHandler.
     ListView listView;
     MyFunctionsArrayAdapter adapter;
     ProgressDialog progressDialog;
+    PostRequestHandler postRequestHandler = null;
     public MyFunctionsFragment () {
         // Required empty public constructor
     }
@@ -61,7 +62,7 @@ public class MyFunctionsFragment extends Fragment implements PostRequestHandler.
             progressDialog.show ();
             HashMap<String,String> param = new HashMap<String,String> ();
             param.put ("token",Session.getToken (getActivity ()));
-            new PostRequestHandler (param,"/myfunctions",this,getContext ());
+            postRequestHandler =  new PostRequestHandler (param,"/myfunctions",this,getContext ());
         }
     }
 
@@ -111,4 +112,10 @@ public class MyFunctionsFragment extends Fragment implements PostRequestHandler.
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(postRequestHandler!=null)
+            postRequestHandler.cancelAllRequests();
+    }
 }

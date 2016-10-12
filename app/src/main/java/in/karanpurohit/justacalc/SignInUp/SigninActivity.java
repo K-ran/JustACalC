@@ -24,6 +24,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -179,12 +180,16 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_GOOGLE_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
-            Log.d("Sigh in"," Done");
+            if(result.isSuccess())
+                handleSignInResult(result);
+            else {
+                Log.d("cool","sign in failed");
+                Toast.makeText(SigninActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+            }
         }
+
     }
     private void handleSignInResult(GoogleSignInResult result) {
-        Log.d("cool", "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             final GoogleSignInAccount acct = result.getSignInAccount();
@@ -224,10 +229,6 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
                     googleSignOut();
                }
            },SigninActivity.this);
-        } else {
-            // Signed out, show unauthenticated UI.
-//            updateUI(false);
-
         }
     }
 

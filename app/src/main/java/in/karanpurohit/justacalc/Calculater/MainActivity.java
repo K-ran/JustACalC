@@ -156,9 +156,10 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                     });
                     signInAlert.show(getSupportFragmentManager(),"");
                 }
-                else
+                else {
                     fragmentTransaction.replace(R.id.content_frame, new MyFunctionsFragment());
-                navListUpdateIndicator (2);
+                    navListUpdateIndicator(2);
+                }
                 break;
             case 3:
                 if(!Session.isSomeOneLoggedIn(getApplicationContext())){
@@ -188,6 +189,8 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
                     tvNavName.setText ("Guest");
                     tvNavEmail.setText ("");
                     updateList();
+                    changeFragment(1);
+                    return;
                 }
                 navListUpdateIndicator (4);
                 break;
@@ -275,6 +278,9 @@ public class MainActivity extends AppCompatActivity implements NormalKeypadFragm
     //evaluates the expression and displays on the screen
     void evaluate(String expression){
 
+        //do not evaluate if expression in empty or last character is "("
+        if(expression.equals("") || expression.toCharArray()[expression.length()-1]=='(')
+                return;
         String functionDefination="";
         //Adding userDefined functions
         for(int i=0;i<CalculaterFragment.UserFunction.size ();i++){
