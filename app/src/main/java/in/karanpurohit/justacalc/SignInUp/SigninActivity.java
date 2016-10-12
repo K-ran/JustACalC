@@ -180,8 +180,10 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_GOOGLE_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if(result.isSuccess())
+            if(result.isSuccess()) {
+//                Toast.makeText(SigninActivity.this, "Success", Toast.LENGTH_SHORT).show();
                 handleSignInResult(result);
+            }
             else {
                 Log.d("cool","sign in failed");
                 Toast.makeText(SigninActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
@@ -229,6 +231,8 @@ public class SigninActivity extends AppCompatActivity implements PostRequestHand
                     googleSignOut();
                }
            },SigninActivity.this);
+        }else {
+            Toast.makeText(SigninActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
         }
     }
 

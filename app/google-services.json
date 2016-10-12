@@ -13,6 +13,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "964961685621-ghdahq45jqu0hs0tq7523ef04uve40va.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.karanpurohit.justacalc",
+            "certificate_hash": "BADE09D73F61627D954884AD0CFEA15808E051B7"
+          }
+        },
+        {
           "client_id": "964961685621-gbqangieda1vue0mpl40np80jgqrshr4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
